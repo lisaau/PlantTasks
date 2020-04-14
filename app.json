@@ -2,6 +2,7 @@
   "expo": {
     "name": "PlantTasks",
     "slug": "PlantTasks",
+    "description": "Track plant tasks and remind you to take care of your plants 🥀 → 🌹",
     "platforms": [
       "ios",
       "android",
