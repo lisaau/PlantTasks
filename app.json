@@ -9,9 +9,9 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/flower-icon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/flower-splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
