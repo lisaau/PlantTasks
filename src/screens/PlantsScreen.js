@@ -10,9 +10,9 @@ export default function PlantsScreen({ navigation }) {
             <Text>Display All Plants Here</Text>
             <FlatList
                 data={plants}
-                keyExtractor={plant => plant.name}
+                keyExtractor={plant => plant.id.toString()}
                 renderItem={({item}) => {
-                    return <TouchableOpacity onPress={() => navigation.navigate('ViewPlant')}>
+                    return <TouchableOpacity onPress={() => navigation.navigate('ViewPlant', { id: item.id })}>
                         <Text>{item.name} - tap to view</Text>
                     </TouchableOpacity>
                 }}

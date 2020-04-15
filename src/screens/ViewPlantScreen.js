@@ -1,10 +1,15 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
 import { Text, View, Button } from 'react-native';
+import PlantContext from '../context/PlantContext';
 
-export default function ViewPlantScreen({ navigation }) {
+export default function ViewPlantScreen({ navigation, route }) {
+    const plants = useContext(PlantContext)
+    console.log(route.params.id, plants[0].id)
+    const plant = plants.find( p => p.id === route.params.id)
+    
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>Viewing plant details</Text>
+            <Text>{plant.name}</Text>
             <Button onPress={() => navigation.goBack()} title="Back" />
             <Button onPress={() => navigation.navigate('EditPlant')} title="Edit Plant" />
         </View>
