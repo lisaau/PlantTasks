@@ -7,4 +7,4 @@ export default function TasksScreen() {
         <Text>Tasks</Text>
       </View>
     );
-  }
+}
