@@ -1,64 +1,19 @@
 import * as React from 'react';
-import { Text, View, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { createStackNavigator } from '@react-navigation/stack';
-
-function TasksScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Tasks</Text>
-    </View>
-  );
-}
-
-function PlantsScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Display All Plants Here</Text>
-      <Button onPress={() => navigation.navigate('CreatePlant')} title="Add New Plant" />
-      <Button onPress={() => navigation.navigate('ViewPlant')} title="View Plant" />
-    </View>
-  );
-}
-
-function CreatePlantScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Form to add a plant</Text>
-      <Button onPress={() => navigation.goBack()} title="Back" />
-      <Button onPress={() => navigation.goBack()} title="Save Plant" />
-    </View>
-  );
-}
-
-function ViewPlantScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Form to add a plant</Text>
-      <Button onPress={() => navigation.goBack()} title="Back" />
-      <Button onPress={() => navigation.navigate('EditPlant')} title="Edit Plant" />
-    </View>
-  );
-}
-
-function EditPlantScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Edit the Plant</Text>
-      <Button onPress={() => navigation.goBack()} title="Back" />
-      <Button onPress={() => navigation.navigate('ViewPlant')} title="Save Plant" />
-    </View>
-  );
-}
+import PlantsScreen from './src/screens/PlantsScreen'
+import TasksScreen from './src/screens/TasksScreen'
+import CreatePlantScreen from './src/screens/CreatePlantScreen'
+import ViewPlantScreen from './src/screens/ViewPlantScreen'
+import EditPlantScreen from './src/screens/EditPlantScreen'
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 function HomeTabs() {
   return (
-
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
@@ -72,7 +27,6 @@ function HomeTabs() {
                 : 'flower-tulip-outline';
             }
 
-            // You can return any component that you like here!
             return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
           },
         })}
@@ -84,7 +38,6 @@ function HomeTabs() {
         <Tab.Screen name="Tasks" component={TasksScreen} />
         <Tab.Screen name="Plants" component={PlantsScreen} />
       </Tab.Navigator>
-    
   );
 }
 
