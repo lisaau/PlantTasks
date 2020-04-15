@@ -1,49 +1,55 @@
 import * as React from 'react';
-import { Button, View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { createStackNavigator } from '@react-navigation/stack';
+import PlantsScreen from './src/screens/PlantsScreen'
+import TasksScreen from './src/screens/TasksScreen'
+import CreatePlantScreen from './src/screens/CreatePlantScreen'
+import ViewPlantScreen from './src/screens/ViewPlantScreen'
+import EditPlantScreen from './src/screens/EditPlantScreen'
 
-function HomeScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
-      <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate('Details')}
-      />
-    </View>
-  );
-}
-
-function DetailsScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Details Screen</Text>
-      <Button
-        title="Go to Details... again"
-        onPress={() => navigation.push('Details')}
-      />
-      <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
-      <Button title="Go back" onPress={() => navigation.goBack()} />
-    </View>
-  );
-}
-
+const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-function App() {
+function HomeTabs() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{ title: 'Overview' }}
-        />
-        <Stack.Screen name="Details" component={DetailsScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+
+            if (route.name === 'Tasks') {
+              iconName = 'format-list-bulleted';
+            } else if (route.name === 'Plants') {
+              iconName = focused
+                ? 'flower-tulip'
+                : 'flower-tulip-outline';
+            }
+
+            return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
+          },
+        })}
+        tabBarOptions={{
+          activeTintColor: 'green',
+          inactiveTintColor: 'gray',
+        }}
+      >
+        <Tab.Screen name="Tasks" component={TasksScreen} />
+        <Tab.Screen name="Plants" component={PlantsScreen} />
+      </Tab.Navigator>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="PlantTasks" component={HomeTabs} />
+        <Stack.Screen name="ViewPlant" component={ViewPlantScreen} />
+        <Stack.Screen name="CreatePlant" component={CreatePlantScreen} />
+        <Stack.Screen name="EditPlant" component={EditPlantScreen} />
+      </Stack.Navigator>
+  </NavigationContainer>
+  )
+}
