@@ -8,6 +8,7 @@ import TasksScreen from './src/screens/TasksScreen'
 import CreatePlantScreen from './src/screens/CreatePlantScreen'
 import ViewPlantScreen from './src/screens/ViewPlantScreen'
 import EditPlantScreen from './src/screens/EditPlantScreen'
+import { PlantProvider } from './src/context/PlantContext'
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -43,13 +44,15 @@ function HomeTabs() {
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="PlantTasks" component={HomeTabs} />
-        <Stack.Screen name="ViewPlant" component={ViewPlantScreen} />
-        <Stack.Screen name="CreatePlant" component={CreatePlantScreen} />
-        <Stack.Screen name="EditPlant" component={EditPlantScreen} />
-      </Stack.Navigator>
-  </NavigationContainer>
+      <PlantProvider>
+        <NavigationContainer>
+            <Stack.Navigator>
+                <Stack.Screen name="PlantTasks" component={HomeTabs} />
+                <Stack.Screen name="ViewPlant" component={ViewPlantScreen} />
+                <Stack.Screen name="CreatePlant" component={CreatePlantScreen} />
+                <Stack.Screen name="EditPlant" component={EditPlantScreen} />
+            </Stack.Navigator>
+        </NavigationContainer>
+      </PlantProvider>
   )
 }
