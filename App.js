@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TouchableOpacity, View, Text } from 'react-native';
+import { TouchableOpacity, View, Text, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -41,9 +41,9 @@ function HomeTabs() {
         }}
       >
         <Tab.Screen name="Tasks" component={TasksScreen} />
-        <Tab.Screen 
-            name="Plants" 
-            component={HeaderStack} 
+        <Tab.Screen
+            name="Plants"
+            component={HeaderStack}
         />
       </Tab.Navigator>
   );
@@ -79,22 +79,22 @@ function ModalStack() {
 
 function HeaderStack() {
     return (
-      <Header.Navigator>
-        <Header.Screen 
-          name="Plants" 
-          component={PlantsScreen} 
-          options={{ 
-            headerShown: false,
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Plants"
+          component={PlantsScreen}
+          options={{
+            headerTitle: "Blah",
             headerRight: () => (
-              <Button 
+              <Button
                 onPress={() => alert('This is a button!')}
-                title="Info"
-                color="#fff"
+                title="+"
+                color="#000"
               />
             )
           }}
         />
-      </Header.Navigator>
+      </Stack.Navigator>
     );
 }
 
@@ -102,24 +102,7 @@ export default function App() {
   return (
       <PlantProvider>
         <NavigationContainer>
-            <Stack.Navigator>
-                <Stack.Screen name="PlantTasks" component={HomeTabs} />
-                <Stack.Screen 
-                    name="ViewPlant" 
-                    component={ViewPlantScreen} 
-                    options={{
-                        headerRight: () => (
-                            <TouchableOpacity onPress={() => alert('Use this to let users edit plant')} >
-                                <EvilIcons name="pencil" style={{fontSize: 35}} />
-                            </TouchableOpacity>
-                        )
-                    }} 
-                />
-                <Stack.Screen name="CreatePlant" component={CreatePlantScreen} />
-                <Stack.Screen name="EditPlant" component={EditPlantScreen} />
-                
-                {/* <Stack.Screen name="CreatePlant" component={ModalStack} options={{ headerShown: false }}/> */}
-            </Stack.Navigator>
+            <HomeTabs/>
         </NavigationContainer>
       </PlantProvider>
   )
