@@ -13,9 +13,8 @@ import { PlantProvider } from './src/context/PlantContext'
 import { EvilIcons } from '@expo/vector-icons'
 
 const Tab = createBottomTabNavigator();
-const Modal = createStackNavigator();
 const Stack = createStackNavigator();
-const Header = createStackNavigator();
+
 
 function HomeTabs() {
   return (
@@ -49,33 +48,6 @@ function HomeTabs() {
   );
 }
 
-function ModalScreen({ navigation }) {
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text style={{ fontSize: 30 }}>This is a modal!</Text>
-        <Button onPress={() => navigation.goBack()} title="Dismiss" />
-      </View>
-    );
-  }
-function HomeScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text style={{ fontSize: 30 }}>This is the home screen!</Text>
-      <Button
-        onPress={() => navigation.navigate('MyModal')}
-        title="Open Modal"
-      />
-    </View>
-  );
-}
-function ModalStack() {
-    return (
-      <Modal.Navigator mode="modal">
-        <Modal.Screen name="Home" component={HomeScreen} />
-        <Modal.Screen name="MyModal" component={ModalScreen} />
-      </Modal.Navigator>
-    );
-}
 
 function HeaderStack() {
     return (
@@ -84,7 +56,6 @@ function HeaderStack() {
           name="Plants"
           component={PlantsScreen}
           options={{
-            headerTitle: "Blah",
             headerRight: () => (
               <Button
                 onPress={() => alert('This is a button!')}
@@ -94,9 +65,23 @@ function HeaderStack() {
             )
           }}
         />
+        <Stack.Screen
+          name="ViewPlant"
+          component={ViewPlantScreen}
+          options={{
+            headerRight: () => (
+                <TouchableOpacity onPress={() => alert('Use this to let users edit plant')} >
+                    <EvilIcons name="pencil" style={{fontSize: 35}} />
+                </TouchableOpacity>
+            )
+          }}
+        />
+        <Stack.Screen name="EditPlant" component={EditPlantScreen} />
+        <Stack.Screen name="CreatePlant" component={CreatePlantScreen} />
       </Stack.Navigator>
     );
 }
+
 
 export default function App() {
   return (
