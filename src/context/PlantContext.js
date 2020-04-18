@@ -5,8 +5,8 @@ const PlantContext = React.createContext();
 
 export const PlantProvider = ({ children }) => {
     const plants = [
-        { id: 1, name: 'Plant #1' },
-        { id: 2, name: 'Plant #2' },
+        { id: 1, name: 'Plant #1', species: 'Air plant' },
+        { id: 2, name: 'Plant #2', species: 'tulip' },
     ]
 
     return <PlantContext.Provider value={plants}>

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { TouchableOpacity, View, Text, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -9,9 +10,11 @@ import CreatePlantScreen from './src/screens/CreatePlantScreen'
 import ViewPlantScreen from './src/screens/ViewPlantScreen'
 import EditPlantScreen from './src/screens/EditPlantScreen'
 import { PlantProvider } from './src/context/PlantContext'
+import { EvilIcons } from '@expo/vector-icons'
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
+
 
 function HomeTabs() {
   return (
@@ -37,21 +40,54 @@ function HomeTabs() {
         }}
       >
         <Tab.Screen name="Tasks" component={TasksScreen} />
-        <Tab.Screen name="Plants" component={PlantsScreen} />
+        <Tab.Screen
+            name="Plants"
+            component={HeaderStack}
+        />
       </Tab.Navigator>
   );
 }
+
+
+function HeaderStack() {
+    return (
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Plants"
+          component={PlantsScreen}
+          options={{
+            headerRight: () => (
+              <Button
+                onPress={() => alert('This is a button!')}
+                title="+"
+                color="#000"
+              />
+            )
+          }}
+        />
+        <Stack.Screen
+          name="ViewPlant"
+          component={ViewPlantScreen}
+          options={{
+            headerRight: () => (
+                <TouchableOpacity onPress={() => alert('Use this to let users edit plant')} >
+                    <EvilIcons name="pencil" style={{fontSize: 35}} />
+                </TouchableOpacity>
+            )
+          }}
+        />
+        <Stack.Screen name="EditPlant" component={EditPlantScreen} />
+        <Stack.Screen name="CreatePlant" component={CreatePlantScreen} />
+      </Stack.Navigator>
+    );
+}
+
 
 export default function App() {
   return (
       <PlantProvider>
         <NavigationContainer>
-            <Stack.Navigator>
-                <Stack.Screen name="PlantTasks" component={HomeTabs} />
-                <Stack.Screen name="ViewPlant" component={ViewPlantScreen} />
-                <Stack.Screen name="CreatePlant" component={CreatePlantScreen} />
-                <Stack.Screen name="EditPlant" component={EditPlantScreen} />
-            </Stack.Navigator>
+            <HomeTabs/>
         </NavigationContainer>
       </PlantProvider>
   )
