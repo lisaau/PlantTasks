@@ -7,17 +7,16 @@ export default function PlantsScreen({ navigation }) {
 
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>Display All Plants Here</Text>
+            <Text>Your Plants</Text>
             <FlatList
                 data={plants}
                 keyExtractor={plant => plant.id.toString()}
                 renderItem={({item}) => {
                     return <TouchableOpacity onPress={() => navigation.navigate('ViewPlant', { id: item.id })}>
-                        <Text>{item.name} - tap to view</Text>
+                        <Text>{item.name}, ID:{item.id}</Text>
                     </TouchableOpacity>
                 }}
             />
-            <Button onPress={() => navigation.navigate('CreatePlant')} title="Add New Plant" />
         </View>
     );
 }
