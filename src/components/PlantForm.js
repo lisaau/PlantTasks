@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Text, View, Button, TextInput, StyleSheet } from 'react-native';
 
-export default function PlantForm({ navigation }) {
+export default function PlantForm({ navigation, onSave }) {
     const [name, setName] = useState('');
     const [species, setSpecies] = useState('');
     console.log(name, species);
@@ -19,7 +19,12 @@ export default function PlantForm({ navigation }) {
                 onChangeText={text => setSpecies(text)}
                 style={styles.input}
             />
-            <Button onPress={() => navigation.goBack()} title="Save Plant" />
+            <Button
+                onPress={() =>
+                    onSave({ name, species }).then(navigation.goBack())
+                }
+                title="Save Plant"
+            />
         </View>
     );
 }
