@@ -4,19 +4,19 @@ import { Text, View, Button, TextInput, StyleSheet } from 'react-native';
 export default function PlantForm({ navigation }) {
     const [name, setName] = useState('');
     const [species, setSpecies] = useState('');
-    console.log(name, species)
+    console.log(name, species);
     return (
         <View>
             <Text>Enter name of plant:</Text>
-            <TextInput 
+            <TextInput
                 value={name}
-                onChangeText={text => setName(text)} 
+                onChangeText={text => setName(text)}
                 style={styles.input}
             />
             <Text>Enter name of species:</Text>
-            <TextInput 
+            <TextInput
                 value={species}
-                onChangeText={text => setSpecies(text)} 
+                onChangeText={text => setSpecies(text)}
                 style={styles.input}
             />
             <Button onPress={() => navigation.goBack()} title="Save Plant" />
@@ -32,5 +32,5 @@ const styles = StyleSheet.create({
         marginBottom: 15,
         padding: 5,
         margin: 5
-    },
+    }
 });

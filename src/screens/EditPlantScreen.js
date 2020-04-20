@@ -8,7 +8,7 @@ export default function EditPlantScreen({ navigation }) {
             style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
         >
             <Text>Edit the Plant</Text>
-            <PlantForm navigation={navigation}/>
+            <PlantForm navigation={navigation} />
         </View>
     );
 }

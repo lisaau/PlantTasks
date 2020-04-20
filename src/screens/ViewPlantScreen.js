@@ -8,8 +8,12 @@ export default function ViewPlantScreen({ navigation, route }) {
     const plant = plants.find( p => p.id === route.params.id)
     
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>{plant.name}, {plant.species}</Text>
+        <View
+            style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+        >
+            <Text>
+                {plant.name}, {plant.species}
+            </Text>
         </View>
     );
 }
