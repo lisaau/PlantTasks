@@ -10,8 +10,6 @@ export default function ViewPlantScreen({ navigation, route }) {
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <Text>{plant.name}, {plant.species}</Text>
-            <Button onPress={() => navigation.goBack()} title="Back" />
-            <Button onPress={() => navigation.navigate('EditPlant')} title="Edit Plant" />
         </View>
     );
 }
