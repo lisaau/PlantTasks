@@ -62,8 +62,7 @@ export const PlantProvider = ({ children }) => {
             );
             const json = await apiPlant.json();
             console.log('deletePlant json', json);
-            setPlants(plants.filter(plant => plant.id !== json.id));
-            console.log('deletePlant plants', plants);
+            setPlants(plants.filter(plant => plant.id !== json[0].id));
         } catch (e) {
             if (e) {
                 console.log(e.message, 'Something went wrong');
@@ -74,11 +73,6 @@ export const PlantProvider = ({ children }) => {
     useEffect(() => {
         fetchPlants();
     }, []);
-
-    // const plants = [
-    //     { id: 1, name: 'Plant #1', species: 'Air plant' },
-    //     { id: 2, name: 'Plant #2', species: 'tulip' },
-    // ]
 
     return (
         <PlantContext.Provider value={{ plants, addNewPlant, deletePlant }}>
