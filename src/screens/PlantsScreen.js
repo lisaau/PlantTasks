@@ -1,22 +1,53 @@
 import React, { useContext } from 'react';
-import { Text, View, Button, FlatList, TouchableOpacity } from 'react-native';
-import PlantContext from '../context/PlantContext'
+import { Text, View, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import PlantContext from '../context/PlantContext';
+import { Feather } from '@expo/vector-icons';
 
 export default function PlantsScreen({ navigation }) {
-    const plants = useContext(PlantContext);
+    const { plants, deletePlant } = useContext(PlantContext);
 
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <View
+            style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+        >
             <Text>Your Plants</Text>
             <FlatList
                 data={plants}
                 keyExtractor={plant => plant.id.toString()}
-                renderItem={({item}) => {
-                    return <TouchableOpacity onPress={() => navigation.navigate('ViewPlant', { id: item.id })}>
-                        <Text>{item.name}, ID:{item.id}</Text>
-                    </TouchableOpacity>
+                renderItem={({ item }) => {
+                    return (
+                        <TouchableOpacity
+                            onPress={() =>
+                                navigation.navigate('ViewPlant', {
+                                    id: item.id
+                                })
+                            }
+                        >
+                            <View style={styles.row}>
+                                <Text>{item.name}, ID:{item.id}</Text>
+                                <TouchableOpacity onPress={() => deletePlant(item.id)}>
+                                    <Feather name='trash' style={styles.icon}/>
+                                </TouchableOpacity>
+                            </View>
+                        </TouchableOpacity>
+                    );
                 }}
             />
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    row: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      paddingVertical: 20,
+      paddingHorizontal: 20,
+      borderTopWidth: 1,
+      borderColor: 'gray'
+    },
+    icon: {
+        fontSize: 24,
+        marginLeft:20
+      },
+  });

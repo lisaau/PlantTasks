@@ -11,7 +11,6 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(morgan('tiny'));
 
@@ -30,7 +29,7 @@ app.get('/plants/:id', (req, res) => {
 
 app.post('/plant', (req, res) => {
     let { plantName, plantSpecies } = req.body;
-    let newPlant = {'id': plants.length + 1, 'name': plantName, 'species': plantSpecies};
+    let newPlant = {'id': Math.floor(Math.random() * 99999), 'name': plantName, 'species': plantSpecies};
     plants.push(newPlant);
     res.json(newPlant)
 });
