@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
-import { Text, View, FlatList, TouchableOpacity } from 'react-native';
+import { Text, View, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import PlantContext from '../context/PlantContext';
+import { Feather } from '@expo/vector-icons';
 
 export default function PlantsScreen({ navigation }) {
-    const { plants } = useContext(PlantContext);
+    const { plants, deletePlant } = useContext(PlantContext);
 
     return (
         <View
@@ -22,9 +23,12 @@ export default function PlantsScreen({ navigation }) {
                                 })
                             }
                         >
-                            <Text>
-                                {item.name}, ID:{item.id}
-                            </Text>
+                            <View style={styles.row}>
+                                <Text>{item.name}, ID:{item.id}</Text>
+                                <TouchableOpacity onPress={() => deletePlant(item.id)}>
+                                    <Feather name='trash' style={styles.icon}/>
+                                </TouchableOpacity>
+                            </View>
                         </TouchableOpacity>
                     );
                 }}
@@ -32,3 +36,18 @@ export default function PlantsScreen({ navigation }) {
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    row: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      paddingVertical: 20,
+      paddingHorizontal: 20,
+      borderTopWidth: 1,
+      borderColor: 'gray'
+    },
+    icon: {
+        fontSize: 24,
+        marginLeft:20
+      },
+  });

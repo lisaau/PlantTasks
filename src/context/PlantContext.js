@@ -45,6 +45,32 @@ export const PlantProvider = ({ children }) => {
         }
     };
 
+    const deletePlant = async id => {
+        try {
+            const apiPlant = await fetch(
+                'https://planttasks.herokuapp.com/plant',
+                {
+                    method: 'DELETE',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        plantId: id
+                    })
+                }
+            );
+            const json = await apiPlant.json();
+            console.log('deletePlant json', json);
+            setPlants(plants.filter(plant => plant.id !== json.id));
+            console.log('deletePlant plants', plants);
+        } catch (e) {
+            if (e) {
+                console.log(e.message, 'Something went wrong');
+            }
+        }
+    };
+
     useEffect(() => {
         fetchPlants();
     }, []);
@@ -55,7 +81,7 @@ export const PlantProvider = ({ children }) => {
     // ]
 
     return (
-        <PlantContext.Provider value={{ plants, addNewPlant }}>
+        <PlantContext.Provider value={{ plants, addNewPlant, deletePlant }}>
             {children}
         </PlantContext.Provider>
     );
