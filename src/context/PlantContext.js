@@ -18,17 +18,17 @@ export const PlantProvider = ({ children }) => {
         }
     };
 
-    const addNewPlant = async ({ name, species }) => {
+    const addNewPlant = async ({name, species}) => {
         try {
             const apiPlants = await fetch(
-                '/https://planttasks.herokuapp.com/plant',
+                'https://planttasks.herokuapp.com/plant',
                 {
                     method: 'POST',
-                    body: JSON.stringify({ name, species })
+                    body: JSON.stringify({  name, species })
                 }
             );
             const json = await apiPlants.json();
-            console.log(json);
+            console.log('addNewPlant json', json);
             setPlants([...plants, json]);
         } catch (e) {
             if (e) {

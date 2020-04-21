@@ -4,7 +4,7 @@ import { Text, View, Button, TextInput, StyleSheet } from 'react-native';
 export default function PlantForm({ navigation, onSave }) {
     const [name, setName] = useState('');
     const [species, setSpecies] = useState('');
-    console.log(name, species);
+    console.log(name, species, onSave);
     return (
         <View>
             <Text>Enter name of plant:</Text>
@@ -20,9 +20,12 @@ export default function PlantForm({ navigation, onSave }) {
                 style={styles.input}
             />
             <Button
-                onPress={() =>
-                    onSave({ name, species }).then(navigation.goBack())
-                }
+                onPress={() => {
+                    console.log('PlantForm.js', { name, species });
+                    onSave({ name, species }).then(
+                        navigation.goBack()
+                    );
+                }}
                 title="Save Plant"
             />
         </View>
