@@ -20,12 +20,7 @@ export default function PlantForm({ navigation, onSave }) {
                 style={styles.input}
             />
             <Button
-                onPress={() => {
-                    console.log('PlantForm.js', { name, species });
-                    onSave({ name, species }).then(
-                        navigation.goBack()
-                    );
-                }}
+                onPress={() => onSave(name, species)}
                 title="Save Plant"
             />
         </View>
