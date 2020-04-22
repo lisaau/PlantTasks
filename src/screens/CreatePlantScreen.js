@@ -5,7 +5,7 @@ import PlantContext from '../context/PlantContext';
 
 export default function CreatePlantScreen({ navigation }) {
     const { addNewPlant } = useContext(PlantContext);
-    console.log('CreatePlantScreen', addNewPlant);
+
     return (
         <View
             style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
@@ -13,6 +13,7 @@ export default function CreatePlantScreen({ navigation }) {
             <Text>Form to add a plant</Text>
             <PlantForm
                 navigation={navigation}
+                initialValues={{ name: '', species: '' }}
                 onSave={(name, species) =>
                     addNewPlant(name, species).then(() => navigation.goBack())
                 }
