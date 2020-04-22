@@ -45,6 +45,41 @@ export const PlantProvider = ({ children }) => {
         }
     };
 
+    const editPlant = async (id, name, species) => {
+        try {
+            const apiPlant = await fetch(
+                'https://planttasks.herokuapp.com/plant',
+                {
+                    method: 'PUT',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        plantId: id,
+                        plantName: name,
+                        plantSpecies: species
+                    })
+                }
+            );
+            const json = await apiPlant.json();
+            console.log('addNewPlant json', json);
+            setPlants([
+                plants.map(plant => {
+                    if(plant.id !== json[1]) {
+                        return plant
+                    } else {
+                        return json[0]
+                    }
+                })
+            ]);
+        } catch (e) {
+            if (e) {
+                console.log(e.message, 'Something went wrong');
+            }
+        }
+    };
+
     const deletePlant = async id => {
         try {
             const apiPlant = await fetch(
@@ -75,7 +110,7 @@ export const PlantProvider = ({ children }) => {
     }, []);
 
     return (
-        <PlantContext.Provider value={{ plants, addNewPlant, deletePlant }}>
+        <PlantContext.Provider value={{ plants, addNewPlant, deletePlant, editPlant }}>
             {children}
         </PlantContext.Provider>
     );

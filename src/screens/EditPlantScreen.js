@@ -4,9 +4,10 @@ import PlantForm from '../components/PlantForm';
 import PlantContext from '../context/PlantContext';
 
 export default function EditPlantScreen({ navigation,route }) {
-    const { plants } = useContext(PlantContext);
+    const { plants, editPlant } = useContext(PlantContext);
     const plant = plants.find(p => p.id === route.params.id);
-    console.log('EditPlantScreen', plant)
+    const id = route.params.id;
+
     return (
         <View
             style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
@@ -15,6 +16,9 @@ export default function EditPlantScreen({ navigation,route }) {
             <PlantForm
                 navigation={navigation}
                 initialValues={{ name: plant.name, species: plant.species }}
+                onSave={(name, species) =>
+                    editPlant(id, name, species).then(() => navigation.goBack())
+                }
             />
         </View>
     );
