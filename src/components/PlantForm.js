@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Text, View, Button, TextInput, StyleSheet } from 'react-native';
 
-export default function PlantForm({ navigation, onSave }) {
-    const [name, setName] = useState('');
-    const [species, setSpecies] = useState('');
-    console.log(name, species, onSave);
+export default function PlantForm({ onSave, initialValues }) {
+    const [name, setName] = useState(initialValues.name);
+    const [species, setSpecies] = useState(initialValues.species);
+
     return (
         <View>
             <Text>Enter name of plant:</Text>

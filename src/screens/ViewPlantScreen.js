@@ -1,11 +1,28 @@
 import React, { useContext } from 'react';
-import { Text, View, Button } from 'react-native';
+import { Text, View, TouchableOpacity } from 'react-native';
 import PlantContext from '../context/PlantContext';
+import { EvilIcons } from '@expo/vector-icons';
 
 export default function ViewPlantScreen({ navigation, route }) {
     const { plants } = useContext(PlantContext);
-    console.log(route.params.id);
     const plant = plants.find(p => p.id === route.params.id);
+    console.log('ViewPlantScreen', route.params.id, plant, navigation);
+
+    React.useLayoutEffect(() => {
+        navigation.setOptions({
+            headerRight: () => (
+                <TouchableOpacity
+                    onPress={() => {
+                        navigation.navigate('EditPlant', {
+                            id: route.params.id
+                        });
+                    }}
+                >
+                    <EvilIcons name="pencil" style={{ fontSize: 35 }} />
+                </TouchableOpacity>
+            )
+        });
+    }, [navigation]);
 
     return (
         <View
