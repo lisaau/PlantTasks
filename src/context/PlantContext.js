@@ -62,17 +62,9 @@ export const PlantProvider = ({ children }) => {
                     })
                 }
             );
-            const json = await apiPlant.json();
-            console.log('addNewPlant json', json);
-            setPlants([
-                plants.map(plant => {
-                    if(plant.id !== json[1]) {
-                        return plant
-                    } else {
-                        return json[0]
-                    }
-                })
-            ]);
+            const json = await apiPlant.json(); // json is an array with the 1st element as the modified plant object and the 2nd element is the plant's index in plants array
+            plants[json[1]] = json[0] // replace the plant in index json[1] with the modifed plant json[0]
+            setPlants([...plants]);
         } catch (e) {
             if (e) {
                 console.log(e.message, 'Something went wrong');
