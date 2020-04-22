@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Text, View, Button, TextInput, StyleSheet } from 'react-native';
 
-
 export default function PlantForm({ onSave, initialValues }) {
     const [name, setName] = useState(initialValues.name);
     const [species, setSpecies] = useState(initialValues.species);
@@ -24,7 +23,7 @@ export default function PlantForm({ onSave, initialValues }) {
                 onPress={() => onSave(name, species)}
                 title="Save Plant"
             />
-        </View>
+    </View>
     );
 }
 

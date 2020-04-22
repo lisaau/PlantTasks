@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Text, View } from 'react-native';
 import PlantForm from '../components/PlantForm';
+import DismissKeyboard from '../components/DismissKeyboard';
 import PlantContext from '../context/PlantContext';
 
 export default function EditPlantScreen({ navigation,route }) {
@@ -9,17 +10,19 @@ export default function EditPlantScreen({ navigation,route }) {
     const id = route.params.id;
 
     return (
-        <View
-            style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
-        >
-            <Text>Edit the Plant</Text>
-            <PlantForm
-                navigation={navigation}
-                initialValues={{ name: plant.name, species: plant.species }}
-                onSave={(name, species) =>
-                    editPlant(id, name, species).then(() => navigation.goBack())
-                }
-            />
-        </View>
+        <DismissKeyboard>
+            <View
+                style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+            >
+                <Text>Edit the Plant</Text>
+                <PlantForm
+                    navigation={navigation}
+                    initialValues={{ name: plant.name, species: plant.species }}
+                    onSave={(name, species) =>
+                        editPlant(id, name, species).then(() => navigation.goBack())
+                    }
+                />
+            </View>
+        </DismissKeyboard>
     );
 }

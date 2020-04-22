@@ -1,12 +1,14 @@
 import React, { useContext } from 'react';
 import { Text, View } from 'react-native';
 import PlantForm from '../components/PlantForm';
+import DismissKeyboard from '../components/DismissKeyboard';
 import PlantContext from '../context/PlantContext';
 
 export default function CreatePlantScreen({ navigation }) {
     const { addNewPlant } = useContext(PlantContext);
 
     return (
+      <DismissKeyboard>
         <View
             style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
         >
@@ -19,5 +21,6 @@ export default function CreatePlantScreen({ navigation }) {
                 }
             />
         </View>
+      </DismissKeyboard>
     );
 }
