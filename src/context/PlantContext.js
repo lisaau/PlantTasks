@@ -62,9 +62,22 @@ export const PlantProvider = ({ children }) => {
                     })
                 }
             );
+            // NOTE- THE NEXT THREE LINES ONLY WORK WITH THE HARD-CODED DATA (NOT FROM DB)
             const json = await apiPlant.json(); // json is an array with the 1st element as the modified plant object and the 2nd element is the plant's index in plants array
             plants[json[1]] = json[0] // replace the plant in index json[1] with the modifed plant json[0]
             setPlants([...plants]);
+
+            /* TO TEST WHEN DB IS DEPLOYED
+            // Get the index of the plant in plants array and replace it with modified plant
+            let modifiedPlantIndex;
+            plants.filter((plant, index) => {
+                if (plant.id === json.id) {
+                    modifiedPlantIndex = index;
+                }
+            });
+            plants[modifiedPlantIndex] = json;
+            setPlants([...plants]);
+            */
         } catch (e) {
             if (e) {
                 console.log(e.message, 'Something went wrong');
