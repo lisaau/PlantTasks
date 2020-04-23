@@ -18,9 +18,9 @@ export const PlantProvider = ({ children }) => {
         }
     };
 
-    const addNewPlant = async (name, species) => {
+    const addNewPlant = async (name, species, notes) => {
         try {
-            console.log('addNewPlant params', name, species);
+            console.log('addNewPlant params', name, species, notes);
             const apiPlants = await fetch(
                 'https://planttasks.herokuapp.com/plant',
                 {
@@ -31,7 +31,8 @@ export const PlantProvider = ({ children }) => {
                     },
                     body: JSON.stringify({
                         plantName: name,
-                        plantSpecies: species
+                        plantSpecies: species,
+                        plantNotes: notes
                     })
                 }
             );
@@ -45,7 +46,7 @@ export const PlantProvider = ({ children }) => {
         }
     };
 
-    const editPlant = async (id, name, species) => {
+    const editPlant = async (id, name, species, notes) => {
         try {
             const apiPlant = await fetch(
                 'https://planttasks.herokuapp.com/plant',
@@ -58,17 +59,14 @@ export const PlantProvider = ({ children }) => {
                     body: JSON.stringify({
                         plantId: id,
                         plantName: name,
-                        plantSpecies: species
+                        plantSpecies: species,
+                        plantNotes: notes
                     })
                 }
             );
-            // NOTE- THE NEXT THREE LINES ONLY WORK WITH THE HARD-CODED DATA (NOT FROM DB)
-            const json = await apiPlant.json(); // json is an array with the 1st element as the modified plant object and the 2nd element is the plant's index in plants array
-            plants[json[1]] = json[0] // replace the plant in index json[1] with the modifed plant json[0]
-            setPlants([...plants]);
 
-            /* TO TEST WHEN DB IS DEPLOYED
             // Get the index of the plant in plants array and replace it with modified plant
+            const json = await apiPlant.json();
             let modifiedPlantIndex;
             plants.filter((plant, index) => {
                 if (plant.id === json.id) {
@@ -77,7 +75,6 @@ export const PlantProvider = ({ children }) => {
             });
             plants[modifiedPlantIndex] = json;
             setPlants([...plants]);
-            */
         } catch (e) {
             if (e) {
                 console.log(e.message, 'Something went wrong');
@@ -102,7 +99,7 @@ export const PlantProvider = ({ children }) => {
             );
             const json = await apiPlant.json();
             console.log('deletePlant json', json);
-            setPlants(plants.filter(plant => plant.id !== json[0].id));
+            setPlants(plants.filter(plant => plant.id !== json.id));
         } catch (e) {
             if (e) {
                 console.log(e.message, 'Something went wrong');
