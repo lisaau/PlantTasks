@@ -17,9 +17,9 @@ export default function EditPlantScreen({ navigation,route }) {
                 <Text>Edit the Plant</Text>
                 <PlantForm
                     navigation={navigation}
-                    initialValues={{ name: plant.name, species: plant.species }}
-                    onSave={(name, species) =>
-                        editPlant(id, name, species).then(() => navigation.goBack())
+                    initialValues={{ name: plant.name, species: plant.species, notes: plant.notes }}
+                    onSave={(name, species, notes) =>
+                        editPlant(id, name, species, notes).then(() => navigation.goBack())
                     }
                 />
             </View>

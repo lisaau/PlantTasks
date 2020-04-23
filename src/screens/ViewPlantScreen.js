@@ -40,6 +40,12 @@ export default function ViewPlantScreen({ navigation, route }) {
                 style={styles.input}
                 editable = {false}
             />
+            <Text>Notes:</Text>
+            <TextInput
+                value={plant.notes}
+                style={styles.input}
+                editable = {false}
+            />
         </View>
     );
 }

@@ -15,9 +15,9 @@ export default function CreatePlantScreen({ navigation }) {
             <Text>Form to add a plant</Text>
             <PlantForm
                 navigation={navigation}
-                initialValues={{ name: '', species: '' }}
-                onSave={(name, species) =>
-                    addNewPlant(name, species).then(() => navigation.goBack())
+                initialValues={{ name: '', species: '', notes: '' }}
+                onSave={(name, species, notes) =>
+                    addNewPlant(name, species, notes).then(() => navigation.goBack())
                 }
             />
         </View>
