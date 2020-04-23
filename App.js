@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TouchableOpacity, Button } from 'react-native';
+import { Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -10,7 +10,6 @@ import CreatePlantScreen from './src/screens/CreatePlantScreen';
 import ViewPlantScreen from './src/screens/ViewPlantScreen';
 import EditPlantScreen from './src/screens/EditPlantScreen';
 import { PlantProvider } from './src/context/PlantContext';
-import { EvilIcons } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -86,15 +85,6 @@ function MainStackScreen({ navigation }) {
             <MainStack.Screen
                 name="ViewPlant"
                 component={ViewPlantScreen}
-                options={{
-                    headerRight: () => (
-                        <TouchableOpacity
-                            onPress={() => navigation.navigate('EditPlant')}
-                        >
-                            <EvilIcons name="pencil" style={{ fontSize: 35 }} />
-                        </TouchableOpacity>
-                    )
-                }}
             />
             <MainStack.Screen
                 name="EditPlant"

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Text, View, Button, TextInput, StyleSheet } from 'react-native';
 
-export default function PlantForm({ navigation, onSave }) {
-    const [name, setName] = useState('');
-    const [species, setSpecies] = useState('');
-    console.log(name, species, onSave);
+export default function PlantForm({ onSave, initialValues }) {
+    const [name, setName] = useState(initialValues.name);
+    const [species, setSpecies] = useState(initialValues.species);
+    const [notes, setNotes] = useState(initialValues.notes);
+    console.log('PlantForm', name, species)
     return (
         <View>
             <Text>Enter name of plant:</Text>
@@ -12,18 +13,26 @@ export default function PlantForm({ navigation, onSave }) {
                 value={name}
                 onChangeText={text => setName(text)}
                 style={styles.input}
+                placeholder='required'
             />
             <Text>Enter name of species:</Text>
             <TextInput
                 value={species}
                 onChangeText={text => setSpecies(text)}
                 style={styles.input}
+                placeholder='required'
+            />
+            <Text>Notes:</Text>
+            <TextInput
+                value={notes}
+                onChangeText={text => setNotes(text)}
+                style={styles.input}
             />
             <Button
-                onPress={() => onSave(name, species)}
+                onPress={() => onSave(name, species, notes)}
                 title="Save Plant"
             />
-        </View>
+    </View>
     );
 }
 
