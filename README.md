@@ -18,5 +18,4 @@ View the progress of the app at https://expo.io/@lisaau/PlantTasks. Make sure to
 
 ### Notes
 
-The `server` directory is a copy of the Express files that are deployed on Heroku (https://planttasks.herokuapp.com/) so that they can be easily viewed here.  
-
+The Express files for the server can be found in a separate repo, [PlantTasksServer](https://github.com/lisaau/PlantTasksServer). The server is deployed on Heroku (https://planttasks.herokuapp.com/).
