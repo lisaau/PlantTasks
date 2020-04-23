@@ -61,7 +61,7 @@ function ModalStackScreen() {
             <Stack.Screen
                 name="CreatePlant"
                 component={CreatePlantScreen}
-                options={{ headerBackTitle: 'Back' }}
+                options={{ headerBackTitle: 'Back', title: 'Add a Plant' }}
             />
         </Stack.Navigator>
     );
@@ -85,11 +85,12 @@ function MainStackScreen({ navigation }) {
             <MainStack.Screen
                 name="ViewPlant"
                 component={ViewPlantScreen}
+                options={{ title: 'Details' }}
             />
             <MainStack.Screen
                 name="EditPlant"
                 component={EditPlantScreen}
-                options={{ headerBackTitle: 'Back' }}
+                options={{ headerBackTitle: 'Back', title: 'Edit' }}
             />
         </MainStack.Navigator>
     );
