@@ -12,7 +12,6 @@ export default function CreatePlantScreen({ navigation }) {
         <View
             style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
         >
-            <Text>Form to add a plant</Text>
             <PlantForm
                 navigation={navigation}
                 initialValues={{ name: '', species: '', notes: '' }}

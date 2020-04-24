@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Button } from 'react-native';
+import { TouchableOpacity, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 import { createStackNavigator } from '@react-navigation/stack';
 import PlantsScreen from './src/screens/PlantsScreen';
 import TasksScreen from './src/screens/TasksScreen';
@@ -74,11 +74,9 @@ function MainStackScreen({ navigation }) {
                 component={PlantsScreen}
                 options={{
                     headerRight: () => (
-                        <Button
-                            onPress={() => navigation.navigate('CreatePlant')}
-                            title="+"
-                            color="#000"
-                        />
+                        <TouchableOpacity onPress={() => navigation.navigate('CreatePlant')}>
+                            <Ionicons name='ios-add' style={{ fontSize: 44, paddingRight: 20 }}/>
+                        </TouchableOpacity>
                     )
                 }}
             />

@@ -5,9 +5,9 @@ export default function PlantForm({ onSave, initialValues }) {
     const [name, setName] = useState(initialValues.name);
     const [species, setSpecies] = useState(initialValues.species);
     const [notes, setNotes] = useState(initialValues.notes);
-    console.log('PlantForm', name, species)
+
     return (
-        <View>
+        <View style={{ width:"70%" }}>
             <Text>Enter name of plant:</Text>
             <TextInput
                 value={name}
@@ -27,6 +27,8 @@ export default function PlantForm({ onSave, initialValues }) {
                 value={notes}
                 onChangeText={text => setNotes(text)}
                 style={styles.input}
+                multiline={true}
+                maxLength={140}
             />
             <Button
                 onPress={() => onSave(name, species, notes)}
@@ -39,10 +41,10 @@ export default function PlantForm({ onSave, initialValues }) {
 const styles = StyleSheet.create({
     input: {
         fontSize: 18,
-        borderWidth: 1,
+        borderBottomWidth: 1,
         borderColor: 'black',
         marginBottom: 15,
         padding: 5,
-        margin: 5
+        margin: 5,
     }
 });

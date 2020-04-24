@@ -10,7 +10,6 @@ export default function PlantsScreen({ navigation }) {
         <View
             style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
         >
-            <Text>Your Plants</Text>
             <FlatList
                 data={plants}
                 keyExtractor={plant => plant.id.toString()}

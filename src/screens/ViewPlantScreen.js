@@ -18,7 +18,7 @@ export default function ViewPlantScreen({ navigation, route }) {
                         });
                     }}
                 >
-                    <EvilIcons name="pencil" style={{ fontSize: 35 }} />
+                    <EvilIcons name="pencil" style={{ fontSize: 44, paddingRight: 10 }} />
                 </TouchableOpacity>
             )
         });
@@ -33,18 +33,21 @@ export default function ViewPlantScreen({ navigation, route }) {
                     value={plant.name}
                     style={styles.input}
                     editable = {false}
+                    multiline={true}
             />
             <Text>Species:</Text>
             <TextInput
                 value={plant.species}
                 style={styles.input}
                 editable = {false}
+                multiline={true}
             />
             <Text>Notes:</Text>
             <TextInput
                 value={plant.notes}
                 style={styles.input}
                 editable = {false}
+                multiline={true}
             />
         </View>
     );
@@ -53,10 +56,11 @@ export default function ViewPlantScreen({ navigation, route }) {
 const styles = StyleSheet.create({
     input: {
         fontSize: 18,
-        borderWidth: 1,
+        borderBottomWidth: 1,
         borderColor: 'black',
         marginBottom: 15,
         padding: 5,
-        margin: 5
+        margin: 5,
+        width: "70%"
     }
 });

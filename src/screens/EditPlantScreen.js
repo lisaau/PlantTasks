@@ -14,7 +14,6 @@ export default function EditPlantScreen({ navigation,route }) {
             <View
                 style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
             >
-                <Text>Edit the Plant</Text>
                 <PlantForm
                     navigation={navigation}
                     initialValues={{ name: plant.name, species: plant.species, notes: plant.notes }}
