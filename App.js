@@ -9,6 +9,7 @@ import TasksScreen from './src/screens/TasksScreen';
 import CreatePlantScreen from './src/screens/CreatePlantScreen';
 import ViewPlantScreen from './src/screens/ViewPlantScreen';
 import EditPlantScreen from './src/screens/EditPlantScreen';
+import TaskFormScreen from './src/screens/TaskFormScreen';
 import { PlantProvider } from './src/context/PlantContext';
 
 const Tab = createBottomTabNavigator();
@@ -79,6 +80,11 @@ function MainStackScreen({ navigation }) {
                         </TouchableOpacity>
                     )
                 }}
+            />
+            <MainStack.Screen
+                name="TaskFormScreen"
+                component={TaskFormScreen}
+                options={{ title: 'Add a Task' }}
             />
             <MainStack.Screen
                 name="ViewPlant"
