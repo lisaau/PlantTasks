@@ -4,8 +4,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import TaskContext from '../context/TaskContext';
 
 export default function TasksScreen() {
-    const { taskInstancesContext } = useContext(TaskContext);
-    const [taskInstances, setTaskInstances] = useState([])
+    const { taskInstancesContext, updateTaskInstanceStatus } = useContext(TaskContext);
 
     // temp filtered data. change comparison to current date after adding auto-generated task instances feature
     let filteredTaskInstances = taskInstancesContext.filter(ti => ti.due_date.substring(0,10) === '2020-04-25')
@@ -22,15 +21,7 @@ export default function TasksScreen() {
                     return (
                         <TouchableOpacity
                             onPress={() => {
-                                // updated completed prop in UI
-                                let modifiedTaskIndex;
-                                filteredTaskInstances.filter((task, index) => {
-                                    if (task.task_instance_id === item.task_instance_id) {
-                                        modifiedTaskIndex = index;
-                                    }
-                                });
-                                filteredTaskInstances[modifiedTaskIndex].completed = !item.completed;
-                                setTaskInstances([...filteredTaskInstances]);
+                                updateTaskInstanceStatus(!item.completed, item.task_instance_id)
                             }}
                         >
                             <View style={styles.row}>
