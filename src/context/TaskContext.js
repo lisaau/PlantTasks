@@ -95,13 +95,38 @@ export const TaskProvider = ({ children }) => {
         }
     };
 
+    const deleteTask = async (taskId) => {
+        try {
+            const apiTask = await fetch(
+                'https://planttasks.herokuapp.com/task',
+                {
+                    method: 'DELETE',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        taskId: taskId
+                    })
+                }
+            );
+            const json = await apiTask.json();
+            console.log('deleteTask json', json);
+            setTasks(tasks.filter(task => task.id !== json.id));
+        } catch (e) {
+            if (e) {
+                console.log(e.message, 'Something went wrong');
+            }
+        }
+    };
+
     React.useEffect(() => {
         fetchTaskInstances();
         fetchTasks()
     }, [])
 
     return (
-        <TaskContext.Provider value={{ taskInstances, updateTaskInstanceStatus, tasks, addNewTask }}>
+        <TaskContext.Provider value={{ taskInstances, updateTaskInstanceStatus, tasks, addNewTask, deleteTask }}>
             {children}
         </TaskContext.Provider>
     );
