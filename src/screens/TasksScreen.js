@@ -1,18 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Text, View, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import TaskContext from '../context/TaskContext';
 
 export default function TasksScreen() {
+    const { taskInstancesContext } = useContext(TaskContext);
     const [taskInstances, setTaskInstances] = useState([])
-    const taskInstancesTestData = [
-        {id: 1, description: 'Spray air plant', frequency: 3, completed: false, plantId: 1, plantName: 'Planty'},
-        {id: 2, description: 'Soak air plant', frequency: 7, completed: false, plantId: 1, plantName: 'Planty'},
-        {id: 3, description: 'Change water', frequency: 2, completed: false, plantId: 2, plantName: 'Planty 2'},
-    ]
 
-    React.useEffect( () => {
-       setTaskInstances(taskInstancesTestData)
-    }, [])
+    // temp filtered data. change comparison to current date after adding auto-generated task instances feature
+    let filteredTaskInstances = taskInstancesContext.filter(ti => ti.due_date.substring(0,10) === '2020-04-25')
 
     return (
         <View
@@ -20,26 +16,26 @@ export default function TasksScreen() {
         >
             <Text>Tasks</Text>
             <FlatList 
-                data={taskInstances}
-                keyExtractor={taskInstance => taskInstance.id.toString()}
+                data={filteredTaskInstances}
+                keyExtractor={taskInstance => (taskInstance['task_instance_id']).toString()}
                 renderItem={({ item }) => {
                     return (
                         <TouchableOpacity
                             onPress={() => {
                                 // updated completed prop in UI
                                 let modifiedTaskIndex;
-                                taskInstances.filter((task, index) => {
-                                    if (task.id === item.id) {
+                                filteredTaskInstances.filter((task, index) => {
+                                    if (task.task_instance_id === item.task_instance_id) {
                                         modifiedTaskIndex = index;
                                     }
                                 });
-                                taskInstances[modifiedTaskIndex].completed = !item.completed;
-                                setTaskInstances([...taskInstances]);
+                                filteredTaskInstances[modifiedTaskIndex].completed = !item.completed;
+                                setTaskInstances([...filteredTaskInstances]);
                             }}
                         >
                             <View style={styles.row}>
                                 <Text style={{textDecorationLine: item.completed === false ? 'none' : 'line-through'}}>
-                                    {item.plantName}: {item.description} 
+                                    {item.name}: {item.description}
                                 </Text>
                                 <MaterialCommunityIcons 
                                     name={item.completed === false ? 'checkbox-blank-outline' : 'checkbox-marked-outline'} 
