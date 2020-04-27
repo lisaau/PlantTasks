@@ -4,10 +4,10 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import TaskContext from '../context/TaskContext';
 
 export default function TasksScreen() {
-    const { taskInstancesContext, updateTaskInstanceStatus } = useContext(TaskContext);
+    const { taskInstances, updateTaskInstanceStatus } = useContext(TaskContext);
 
     // temp filtered data. change comparison to current date after adding auto-generated task instances feature
-    let filteredTaskInstances = taskInstancesContext.filter(ti => ti.due_date.substring(0,10) === '2020-04-25')
+    let filteredTaskInstances = taskInstances.filter(ti => ti.due_date.substring(0,10) === '2020-04-25')
 
     return (
         <View

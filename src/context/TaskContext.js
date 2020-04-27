@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 const TaskContext = React.createContext();
 
 export const TaskProvider = ({ children }) => {
-    const [taskInstancesContext, setTaskInstances] = useState([])
+    const [taskInstances, setTaskInstances] = useState([])
     const fetchTaskInstances = async () => {
         try {
             const apiTaskInstances = await fetch(
@@ -36,14 +36,14 @@ export const TaskProvider = ({ children }) => {
             );
             const json = await apiTaskInstance.json();
             let modifiedTaskIndex;
-            taskInstancesContext.filter((task, index) => {
+            taskInstances.filter((task, index) => {
                 if (task.task_instance_id === json.id) {
                     modifiedTaskIndex = index;
                 }
             });
-            taskInstancesContext[modifiedTaskIndex].completed = json.completed;
+            taskInstances[modifiedTaskIndex].completed = json.completed;
 
-            setTaskInstances([...taskInstancesContext]);
+            setTaskInstances([...taskInstances]);
         } catch (e) {
             if (e) {
                 console.log(e.message, 'Something went wrong');
@@ -56,7 +56,7 @@ export const TaskProvider = ({ children }) => {
     }, [])
 
     return (
-        <TaskContext.Provider value={{ taskInstancesContext, updateTaskInstanceStatus }}>
+        <TaskContext.Provider value={{ taskInstances, updateTaskInstanceStatus }}>
             {children}
         </TaskContext.Provider>
     );
