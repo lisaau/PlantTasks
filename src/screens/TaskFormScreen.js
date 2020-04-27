@@ -1,12 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Text, View, Button, TextInput, StyleSheet } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import { EvilIcons } from '@expo/vector-icons';
+import TaskContext from '../context/TaskContext';
 
 export default function TaskFormScreen({ navigation, route }) {
+    const { addNewTask } = useContext(TaskContext);
     const [description, setDescription] = useState('');
     const [frequency, setFrequency] = useState('');
-    console.log(description,frequency)
+    const plantId = route.params.id;
+
+    // frequency values for RNPickerSelect
+    const daysSelection = [];
+    for (let i = 1; i < 31; i++) {
+        daysSelection.push({label: i.toString(), value: i})
+    }
+
+    console.log('TaskFormScreen', description, frequency, route.params.id)
+
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <Text>Add description:</Text>
@@ -18,20 +29,24 @@ export default function TaskFormScreen({ navigation, route }) {
             />
             <Text>Frequency (in days):</Text>
             <RNPickerSelect
-                placeholder={{}}
                 style={pickerSelectStyles}
                 Icon={() => {
                     return <EvilIcons name='chevron-down' style={{fontSize: 44}} />;
                 }}
                 onValueChange={(value) => setFrequency(value)}
-                items={[
-                    { label: '1', value: 1 },
-                    { label: '2', value: 3 },
-                    { label: '3', value: 3 },
-                ]}
+                items={daysSelection}
             />
             <Button
-                // onPress={() => onSave(description, frequency)}
+                onPress={() => {
+                    if (description === '') {
+                        alert('Please enter the description of the task')
+                    } else if(frequency === null || frequency === '') {
+                        alert('Please enter number of days');
+                    } else {
+                        addNewTask(description, frequency, plantId)
+                    }
+                    navigation.goBack()
+                }}
                 title="Save Task"
             />
     </View>
