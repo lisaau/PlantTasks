@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Text, View, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import PlantContext from '../context/PlantContext';
-import { Feather } from '@expo/vector-icons';
+import { Feather, MaterialIcons} from '@expo/vector-icons';
 
 export default function PlantsScreen({ navigation }) {
     const { plants, deletePlant } = useContext(PlantContext);
@@ -23,6 +23,12 @@ export default function PlantsScreen({ navigation }) {
                             }
                         >
                             <View style={styles.row}>
+                                <TouchableOpacity onPress={() => navigation.navigate('TaskFormScreen', {id: item.id})}>
+                                    <MaterialIcons name='playlist-add' style={styles.icon}/>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => navigation.navigate('ViewTasksScreen', {id: item.id, name: item.name})}>
+                                    <MaterialIcons name='playlist-add-check' style={styles.icon}/>
+                                </TouchableOpacity>
                                 <Text>{item.name}, ID:{item.id}</Text>
                                 <TouchableOpacity onPress={() => deletePlant(item.id)}>
                                     <Feather name='trash' style={styles.icon}/>

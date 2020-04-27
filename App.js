@@ -4,12 +4,15 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 import { createStackNavigator } from '@react-navigation/stack';
+import { PlantProvider } from './src/context/PlantContext';
+import { TaskProvider } from './src/context/TaskContext';
 import PlantsScreen from './src/screens/PlantsScreen';
 import TasksScreen from './src/screens/TasksScreen';
 import CreatePlantScreen from './src/screens/CreatePlantScreen';
 import ViewPlantScreen from './src/screens/ViewPlantScreen';
 import EditPlantScreen from './src/screens/EditPlantScreen';
-import { PlantProvider } from './src/context/PlantContext';
+import TaskFormScreen from './src/screens/TaskFormScreen';
+import ViewTasksScreen from './src/screens/ViewTasksScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -81,6 +84,16 @@ function MainStackScreen({ navigation }) {
                 }}
             />
             <MainStack.Screen
+                name="TaskFormScreen"
+                component={TaskFormScreen}
+                options={{ title: 'Add a Task' }}
+            />
+            <MainStack.Screen
+                name="ViewTasksScreen"
+                component={ViewTasksScreen}
+                options={{ title: 'Tasks' }}
+            />
+            <MainStack.Screen
                 name="ViewPlant"
                 component={ViewPlantScreen}
                 options={{ title: 'Details' }}
@@ -97,9 +110,11 @@ function MainStackScreen({ navigation }) {
 export default function App() {
     return (
         <PlantProvider>
-            <NavigationContainer>
-                <HomeTabs />
-            </NavigationContainer>
+            <TaskProvider>
+                <NavigationContainer>
+                    <HomeTabs />
+                </NavigationContainer>
+            </TaskProvider>
         </PlantProvider>
     );
 }
