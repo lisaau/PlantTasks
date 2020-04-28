@@ -18,6 +18,11 @@ export default function TaskFormScreen({ navigation, route }) {
 
     console.log('TaskFormScreen', description, frequency, route.params.id)
 
+    React.useLayoutEffect(() => {
+        navigation.setOptions({
+            title: `Add Task for ${route.params.name}`}, [navigation])
+    });
+
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <Text>Add description:</Text>
