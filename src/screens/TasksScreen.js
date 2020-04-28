@@ -1,15 +1,17 @@
-import React, { useState, useContext } from 'react';
-import { Text, View, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import React, { useContext } from 'react';
+import { Text, View, FlatList, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import TaskContext from '../context/TaskContext';
 
 export default function TasksScreen() {
-    const { taskInstances, updateTaskInstanceStatus } = useContext(TaskContext);
+    const { taskInstances, updateTaskInstanceStatus, loading } = useContext(TaskContext);
 
     // temp filtered data. change comparison to current date after adding auto-generated task instances feature
     let filteredTaskInstances = taskInstances.filter(ti => ti.due_date.substring(0,10) === '2020-04-25')
 
     return (
+        loading === true ? 
+        <ActivityIndicator style={styles.indicator} size='large' /> :
         <View
             style={{ flex: 1, justifyContent: 'center', alignItems: 'center', marginTop:"30%" }}
         >
@@ -53,5 +55,8 @@ const styles = StyleSheet.create({
     icon: {
         fontSize: 15,
         marginLeft: 20
+    },
+    indicator: {
+        padding: 200
     },
 })

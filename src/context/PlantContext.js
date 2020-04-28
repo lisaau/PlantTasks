@@ -4,6 +4,7 @@ const PlantContext = React.createContext();
 
 export const PlantProvider = ({ children }) => {
     const [plants, setPlants] = useState([]);
+    const [loading, setLoading] = useState(true);
     const fetchPlants = async () => {
         try {
             const apiPlants = await fetch(
@@ -11,6 +12,7 @@ export const PlantProvider = ({ children }) => {
             );
             const json = await apiPlants.json();
             setPlants(json);
+            setLoading(false);
         } catch (e) {
             if (e) {
                 console.log(e.message, 'Something went wrong');
@@ -112,7 +114,7 @@ export const PlantProvider = ({ children }) => {
     }, []);
 
     return (
-        <PlantContext.Provider value={{ plants, addNewPlant, deletePlant, editPlant }}>
+        <PlantContext.Provider value={{ plants, addNewPlant, deletePlant, editPlant, loading }}>
             {children}
         </PlantContext.Provider>
     );

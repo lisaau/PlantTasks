@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
-import { Text, View, TouchableOpacity, StyleSheet, TouchableHighlight } from 'react-native';
+import { Text, View, TouchableOpacity, StyleSheet, TouchableHighlight, ActivityIndicator } from 'react-native';
 import PlantContext from '../context/PlantContext';
 import { Feather, MaterialIcons} from '@expo/vector-icons';
 import { SwipeListView } from 'react-native-swipe-list-view';
 
 export default function PlantsScreen({ navigation }) { 
-    const { plants, deletePlant } = useContext(PlantContext);
+    const { plants, deletePlant, loading } = useContext(PlantContext);
 
     const renderItem = data => (
         <TouchableHighlight
@@ -43,6 +43,8 @@ export default function PlantsScreen({ navigation }) {
     );
 
     return (
+        loading === true ? 
+        <ActivityIndicator style={styles.indicator} size='large' /> :
         <View style={styles.container}>
             <SwipeListView
                 data={plants}
@@ -66,6 +68,9 @@ const styles = StyleSheet.create({
     },
     icon: {
         fontSize: 24,
+    },
+    indicator: {
+        padding: 200
     },
     backTextWhite: {
         color: '#FFF',
