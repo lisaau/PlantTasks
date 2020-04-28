@@ -1,106 +1,41 @@
-import React, { useContext, useState } from 'react';
-import { Text, View, FlatList, TouchableOpacity, StyleSheet, TouchableHighlight } from 'react-native';
+import React, { useContext } from 'react';
+import { Text, View, TouchableOpacity, StyleSheet, TouchableHighlight } from 'react-native';
 import PlantContext from '../context/PlantContext';
 import { Feather, MaterialIcons} from '@expo/vector-icons';
 import { SwipeListView } from 'react-native-swipe-list-view';
 
 export default function PlantsScreen({ navigation }) { 
-    // const { plants, deletePlant } = useContext(PlantContext);
-
-    // return (
-    //     <View
-    //         style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
-    //     >
-    //         <FlatList
-    //             data={plants}
-    //             keyExtractor={plant => plant.id.toString()}
-    //             renderItem={({ item }) => {
-    //                 return (
-    //                     <TouchableOpacity
-    //                         onPress={() =>
-    //                             navigation.navigate('ViewPlant', {
-    //                                 id: item.id
-    //                             })
-    //                         }
-    //                     >
-    //                         <View style={styles.row}>
-    //                             <TouchableOpacity onPress={() => navigation.navigate('TaskFormScreen', {id: item.id})}>
-    //                                 <MaterialIcons name='playlist-add' style={styles.icon}/>
-    //                             </TouchableOpacity>
-    //                             <TouchableOpacity onPress={() => navigation.navigate('ViewTasksScreen', {id: item.id, name: item.name})}>
-    //                                 <MaterialIcons name='playlist-add-check' style={styles.icon}/>
-    //                             </TouchableOpacity>
-    //                             <Text>{item.name}, ID:{item.id}</Text>
-    //                             <TouchableOpacity onPress={() => deletePlant(item.id)}>
-    //                                 <Feather name='trash' style={styles.icon}/>
-    //                             </TouchableOpacity>
-    //                         </View>
-    //                     </TouchableOpacity>
-    //                 );
-    //             }}
-    //         />
-    //     </View>
-    // );
-    // }
-    const [listData, setListData] = useState(
-        Array(20)
-            .fill('')
-            .map((_, i) => ({ key: `${i}`, text: `item #${i}` }))
-    );
-
-    const closeRow = (rowMap, rowKey) => {
-        if (rowMap[rowKey]) {
-            console.log('closeRow', rowKey)
-            rowMap[rowKey].closeRow();
-        }
-    };
-
-    const deleteRow = (rowMap, rowKey) => {
-        closeRow(rowMap, rowKey);
-        const newData = [...listData];
-        const prevIndex = listData.findIndex(item => item.key === rowKey);
-        newData.splice(prevIndex, 1);
-        setListData(newData);
-    };
-
-    const onRowDidOpen = rowKey => {
-        console.log('This row opened', rowKey);
-    };
+    const { plants, deletePlant } = useContext(PlantContext);
 
     const renderItem = data => (
         <TouchableHighlight
-            onPress={() => console.log(`You touched ${data.item.text}. Use this to redirect to view plant screen`)}
+            onPress={() => navigation.navigate('ViewPlant', { id: data.item.id })}
             style={styles.rowFront}
             underlayColor={'#AAA'}
         >
             <View>
-                <Text>This will be plant {data.item.text}</Text>
+                <Text>{data.item.name}</Text>
             </View>
         </TouchableHighlight>
     );
 
-    const renderHiddenItem = (data, rowMap) => (
+    const renderHiddenItem = (data) => (
         <View style={styles.rowBack}>
-            <Text>Test</Text>
-
             <TouchableOpacity
-                style={[styles.backRightBtn, styles.backRightBtnLeft]}
-                onPress={() => closeRow(rowMap, data.item.key)}
+                style={[styles.backBtns, styles.backLeftBtnAdd]}
+                onPress={() => navigation.navigate('TaskFormScreen', { id: data.item.id, name: data.item.name })}
             >
-                <Text style={styles.backTextWhite}>Close</Text>
                 <MaterialIcons name='playlist-add' style={styles.icon}/>
             </TouchableOpacity>
             <TouchableOpacity
-                style={[styles.backRightBtn, styles.backRightBtnRight]}
-                onPress={() => closeRow(rowMap, data.item.key)}
+                style={[styles.backBtns, styles.backLeftBtnView]}
+                onPress={() => navigation.navigate('ViewTasksScreen', { id: data.item.id, name: data.item.name })}
             >
-                
-                <Text style={styles.backTextWhite}>Close</Text>
                 <MaterialIcons name='playlist-add-check' style={styles.icon}/>
             </TouchableOpacity>
             <TouchableOpacity
-                style={[styles.backRightBtn, styles.backRightBtnTest]}
-                onPress={() => deleteRow(rowMap, data.item.key)}
+                style={[styles.backBtns, styles.backRightBtnDelete]}
+                onPress={() => deletePlant(data.item.id)}
             >
                 <Feather name='trash' style={styles.icon}/>
             </TouchableOpacity>
@@ -110,38 +45,23 @@ export default function PlantsScreen({ navigation }) {
     return (
         <View style={styles.container}>
             <SwipeListView
-                data={listData}
+                data={plants}
+                keyExtractor={plant => plant.id.toString()}
                 renderItem={renderItem}
                 renderHiddenItem={renderHiddenItem}
                 leftOpenValue={150}
                 rightOpenValue={-75}
                 previewRowKey={'0'}
                 previewOpenValue={-40}
-                previewOpenDelay={3000}
-                onRowDidOpen={onRowDidOpen}
+                previewOpenDelay={5000}
             />
         </View>
     );
 }
 
-// const styles = StyleSheet.create({
-//     row: {
-//       flexDirection: 'row',
-//       justifyContent: 'space-between',
-//       paddingVertical: 20,
-//       paddingHorizontal: 20,
-//       borderTopWidth: 1,
-//       borderColor: 'gray'
-//     },
-//     icon: {
-//         fontSize: 24,
-//         marginLeft:20
-//       },
-//   });
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'white',
         flex: 1,
     },
     icon: {
@@ -152,8 +72,8 @@ const styles = StyleSheet.create({
     },
     rowFront: {
         alignItems: 'center',
-        backgroundColor: '#CCC',
-        borderBottomColor: 'black',
+        backgroundColor: 'white',
+        borderBottomColor: 'gray',
         borderBottomWidth: 1,
         justifyContent: 'center',
         height: 50,
@@ -166,7 +86,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         paddingLeft: 15,
     },
-    backRightBtn: {
+    backBtns: {
         alignItems: 'center',
         bottom: 0,
         justifyContent: 'center',
@@ -174,15 +94,15 @@ const styles = StyleSheet.create({
         top: 0,
         width: 75,
     },
-    backRightBtnLeft: {
-        backgroundColor: 'blue',
+    backLeftBtnAdd: {
+        backgroundColor: '#BFDFBF',
     },
-    backRightBtnRight: {
-        backgroundColor: 'purple',
+    backLeftBtnView: {
+        backgroundColor: '#BFCFDF',
         right: 225,
     },
-    backRightBtnTest: {
-        backgroundColor: 'red',
+    backRightBtnDelete: {
+        backgroundColor: '#DFBFCF',
         right: 0,
     },
 });
