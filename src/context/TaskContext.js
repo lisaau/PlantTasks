@@ -10,7 +10,7 @@ export const TaskProvider = ({ children }) => {
     const fetchTaskInstances = async () => {
         try {
             const apiTaskInstances = await fetch(
-                'https://planttasks.herokuapp.com/taskinstances'
+                'https://planttasks.herokuapp.com/taskinstances/today'
             );
             const json = await apiTaskInstances.json();
             setTaskInstances(json);
@@ -89,7 +89,7 @@ export const TaskProvider = ({ children }) => {
             );
             const json = await apiTaskInstance.json();
             console.log('addNewTask json', json);
-            setTasks([...tasks, json])
+            setTasks([...tasks, json]);
         } catch (e) {
             if (e) {
                 console.log(e.message, 'Something went wrong');
@@ -97,7 +97,7 @@ export const TaskProvider = ({ children }) => {
         }
     };
 
-    const deleteTask = async (taskId) => {
+    const deleteTask = async taskId => {
         try {
             const apiTask = await fetch(
                 'https://planttasks.herokuapp.com/task',
@@ -124,11 +124,20 @@ export const TaskProvider = ({ children }) => {
 
     React.useEffect(() => {
         fetchTaskInstances();
-        fetchTasks()
-    }, [])
+        fetchTasks();
+    }, []);
 
     return (
-        <TaskContext.Provider value={{ taskInstances, updateTaskInstanceStatus, tasks, addNewTask, deleteTask, loading }}>
+        <TaskContext.Provider
+            value={{
+                taskInstances,
+                updateTaskInstanceStatus,
+                tasks,
+                addNewTask,
+                deleteTask,
+                loading
+            }}
+        >
             {children}
         </TaskContext.Provider>
     );
