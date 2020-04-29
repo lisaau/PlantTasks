@@ -5,15 +5,14 @@ import {
     FlatList,
     TouchableOpacity,
     StyleSheet,
-    ActivityIndicator
+    ActivityIndicator,
+    Alert
 } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import TaskContext from '../context/TaskContext';
 
 export default function TasksScreen() {
-    const { taskInstances, updateTaskInstanceStatus, loading } = useContext(
-        TaskContext
-    );
+    const { taskInstances, updateTaskInstanceStatus, loading } = useContext(TaskContext);
 
     const taskInstanceFlatList = (
         <View>
@@ -66,6 +65,10 @@ export default function TasksScreen() {
         ) : (
             taskInstanceFlatList
         );
+
+    if (taskInstances.length !== 0 && taskInstances.filter(ti => ti.completed === true).length === taskInstances.length && loading === false) {
+        Alert.alert('All tasks completed! 🎉');
+    }    
 
     return loading === true ? (
         <ActivityIndicator style={styles.indicator} size="large" />
