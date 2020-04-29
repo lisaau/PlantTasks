@@ -65,10 +65,14 @@ export default function TasksScreen() {
         ) : (
             taskInstanceFlatList
         );
+    
 
-    if (taskInstances.length !== 0 && taskInstances.filter(ti => ti.completed === true).length === taskInstances.length && loading === false) {
-        Alert.alert('All tasks completed! 🎉');
-    }    
+    // alert when user completes all tasks
+    React.useEffect(() => {
+        if (taskInstances.length !== 0 && taskInstances.filter(ti => ti.completed === true).length === taskInstances.length && loading === false) {
+            Alert.alert('All tasks completed! 🎉');
+        }
+    },[taskInstances])
 
     return loading === true ? (
         <ActivityIndicator style={styles.indicator} size="large" />
