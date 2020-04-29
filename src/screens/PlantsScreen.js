@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
 import { Text, View, TouchableOpacity, StyleSheet, TouchableHighlight, ActivityIndicator } from 'react-native';
 import PlantContext from '../context/PlantContext';
-import { Feather, MaterialIcons} from '@expo/vector-icons';
+import { Feather, MaterialIcons, MaterialCommunityIcons} from '@expo/vector-icons';
 import { SwipeListView } from 'react-native-swipe-list-view';
+
+const plantIcons = ['tree', 'flower-tulip-outline', 'flower', 'flower-outline', 'flower-poppy', 'leaf']
 
 export default function PlantsScreen({ navigation }) { 
     const { plants, deletePlant, loading } = useContext(PlantContext);
@@ -13,8 +15,9 @@ export default function PlantsScreen({ navigation }) {
             style={styles.rowFront}
             underlayColor={'#AAA'}
         >
-            <View>
-                <Text>{data.item.name}</Text>
+            <View style={{alignItems:'center'}}>
+                <Text>{data.item.name} </Text>
+                <MaterialCommunityIcons name={plantIcons[data.item.id % plantIcons.length]} size={24}/>
             </View>
         </TouchableHighlight>
     );
@@ -71,9 +74,6 @@ const styles = StyleSheet.create({
     },
     indicator: {
         padding: 200
-    },
-    backTextWhite: {
-        color: '#FFF',
     },
     rowFront: {
         alignItems: 'center',
