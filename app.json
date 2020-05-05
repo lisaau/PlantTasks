@@ -1,5 +1,6 @@
 {
   "expo": {
+    "scheme": "planttasks",
     "name": "PlantTasks",
     "slug": "PlantTasks",
     "description": "Track plant tasks and remind you to take care of your plants 🥀 → 🌹",
