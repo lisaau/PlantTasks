@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 const TaskContext = React.createContext();
 
-export const TaskProvider = ({ children }) => {
+export const TaskProvider = ({ children, token }) => {
     const [taskInstances, setTaskInstances] = useState([]);
     const [tasks, setTasks] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -10,7 +10,12 @@ export const TaskProvider = ({ children }) => {
     const fetchTaskInstances = async () => {
         try {
             const apiTaskInstances = await fetch(
-                'https://planttasks.herokuapp.com/taskinstances/today'
+                'https://planttasks.herokuapp.com/taskinstances/today',
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
             );
             const json = await apiTaskInstances.json();
             setTaskInstances(json);
@@ -30,7 +35,8 @@ export const TaskProvider = ({ children }) => {
                     method: 'PUT',
                     headers: {
                         Accept: 'application/json',
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`
                     },
                     body: JSON.stringify({
                         status: status,
@@ -58,7 +64,12 @@ export const TaskProvider = ({ children }) => {
     const fetchTasks = async () => {
         try {
             const apiTaskInstances = await fetch(
-                'https://planttasks.herokuapp.com/tasks'
+                'https://planttasks.herokuapp.com/tasks',
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
             );
             const json = await apiTaskInstances.json();
             setTasks(json);
@@ -78,7 +89,8 @@ export const TaskProvider = ({ children }) => {
                     method: 'POST',
                     headers: {
                         Accept: 'application/json',
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`
                     },
                     body: JSON.stringify({
                         description: description,
@@ -105,7 +117,8 @@ export const TaskProvider = ({ children }) => {
                     method: 'DELETE',
                     headers: {
                         Accept: 'application/json',
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`
                     },
                     body: JSON.stringify({
                         taskId: taskId

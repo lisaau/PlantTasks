@@ -45,9 +45,11 @@ export default function PlantsScreen({ navigation }) {
         </View>
     );
 
-    return (
-        loading === true ? 
-        <ActivityIndicator style={styles.indicator} size='large' /> :
+    const dataToDisplay = plants === null || plants.length === 0?
+        <View style={styles.textContainer}>
+            <Text style={styles.text}>Click '+' to a plant!</Text>
+        </View>
+        :
         <View style={styles.container}>
             <SwipeListView
                 data={plants}
@@ -61,6 +63,11 @@ export default function PlantsScreen({ navigation }) {
                 previewOpenDelay={5000}
             />
         </View>
+
+    return (
+        loading === true ? 
+        <ActivityIndicator style={styles.indicator} size='large' /> :
+        dataToDisplay
     );
 }
 
@@ -68,6 +75,15 @@ export default function PlantsScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+    },
+    textContainer: {
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center"
+    },
+    text: {
+        fontSize: 24,
+        color: 'green'
     },
     icon: {
         fontSize: 24,

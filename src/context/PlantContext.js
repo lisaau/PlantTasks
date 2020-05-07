@@ -2,13 +2,18 @@ import React, { useState, useEffect } from 'react';
 
 const PlantContext = React.createContext();
 
-export const PlantProvider = ({ children }) => {
+export const PlantProvider = ({ children, token }) => {
     const [plants, setPlants] = useState([]);
     const [loading, setLoading] = useState(true);
     const fetchPlants = async () => {
         try {
             const apiPlants = await fetch(
-                'https://planttasks.herokuapp.com/plants'
+                'https://planttasks.herokuapp.com/plants',
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
             );
             const json = await apiPlants.json();
             setPlants(json);
@@ -29,7 +34,8 @@ export const PlantProvider = ({ children }) => {
                     method: 'POST',
                     headers: {
                         Accept: 'application/json',
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`
                     },
                     body: JSON.stringify({
                         plantName: name,
@@ -56,7 +62,8 @@ export const PlantProvider = ({ children }) => {
                     method: 'PUT',
                     headers: {
                         Accept: 'application/json',
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`
                     },
                     body: JSON.stringify({
                         plantId: id,
@@ -92,7 +99,8 @@ export const PlantProvider = ({ children }) => {
                     method: 'DELETE',
                     headers: {
                         Accept: 'application/json',
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`
                     },
                     body: JSON.stringify({
                         plantId: id
