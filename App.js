@@ -16,6 +16,7 @@ import TasksScreen from './src/screens/TasksScreen';
 import TaskFormScreen from './src/screens/TaskFormScreen';
 import ViewPlantScreen from './src/screens/ViewPlantScreen';
 import ViewTasksScreen from './src/screens/ViewTasksScreen';
+import LoginScreen from './src/screens/LoginScreen';
 
 const auth0ClientId = 'CP2k1WKt3V5r4J8XbVt9gzScxE3s2gTI';
 const auth0Domain = 'https://dev-skxc8k2i.auth0.com';
@@ -170,7 +171,7 @@ export default function App() {
                     </NavigationContainer>
                 </TaskProvider>
             </PlantProvider>
-        : <View style={styles.container}><Button title="Log in with Auth0" onPress={login} /></View>
+        : <LoginScreen login={login}/>
   )
 }
 
