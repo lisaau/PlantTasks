@@ -116,7 +116,7 @@ function MainStackScreen({ navigation }) {
     );
 }
 
-export function AppInitializer() {
+function AppInitializer() {
     const { fetchPlants } = React.useContext(PlantContext);
     const [isInitializing, setIsInitializing] = React.useState(true);
 
@@ -126,7 +126,7 @@ export function AppInitializer() {
 
     return (
         isInitializing ? 
-        <ActivityIndicator/> 
+        <ActivityIndicator style={styles.indicator} size='large' />
         : 
         <NavigationContainer>
             <HomeTabs />
@@ -207,7 +207,10 @@ const styles = StyleSheet.create({
       fontSize: 20,
       textAlign: "center",
       marginTop: 40
-    }
+    },
+    indicator: {
+        padding: 200
+    },
   });
   
   /**

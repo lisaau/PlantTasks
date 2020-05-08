@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-    Button,
     View,
     StyleSheet,
     Text,
@@ -13,11 +12,6 @@ export default function LoginScreen({ login }) {
         <View style={styles.container}>
             <Text style={styles.header}>PlantTasks</Text>
             <Image source={require('../../assets/flower-icon.png')} style={styles.image} />
-            {/* <Button
-                title="Log in"
-                onPress={login}
-                accessibilityLabel="Log in to PlantTasks"
-            /> */}
             <TouchableOpacity onPress={login}>
                 <Text style={styles.login}>Log in</Text>
             </TouchableOpacity>
@@ -32,11 +26,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     header: {
-        fontSize: 24,
+        fontSize: 26,
         color: 'green'
     },
     login: {
-        fontSize: 18,
+        fontSize: 20,
         color: 'green',
         marginBottom: 100,
         borderWidth: 1, borderColor: '#000', borderRadius: 12, padding: 8, 

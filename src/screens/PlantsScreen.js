@@ -7,7 +7,7 @@ import PlantContext from '../context/PlantContext';
 
 const plantIcons = ['tree', 'flower-tulip-outline', 'flower', 'flower-outline', 'flower-poppy', 'leaf'];
 
-export function PlantDataSwipeList({ navigation }) {
+function PlantDataSwipeList({ navigation }) {
     const { plants, deletePlant } = React.useContext(PlantContext);
 
     const renderItem = data => (
