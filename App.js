@@ -5,7 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
-import { TouchableOpacity, Button, View, Text, StyleSheet } from "react-native";
+import { TouchableOpacity, StyleSheet, ActivityIndicator } from "react-native";
 
 import PlantContext, { PlantProvider } from './src/context/PlantContext';
 import { TaskProvider } from './src/context/TaskContext';
@@ -26,6 +26,7 @@ const Stack = createStackNavigator();
 const MainStack = createStackNavigator();
 
 function HomeTabs() {
+    const { plants } = React.useContext(PlantContext)
     return (
         <Tab.Navigator
             screenOptions={({ route }) => ({
@@ -53,6 +54,7 @@ function HomeTabs() {
                 activeTintColor: 'green',
                 inactiveTintColor: 'gray'
             }}
+            initialRouteName={plants.length===0 ? "Plants" : "Tasks"}
         >
             <Tab.Screen name="Tasks" component={TasksScreen} />
             <Tab.Screen name="Plants" component={ModalStackScreen} />
@@ -114,6 +116,25 @@ function MainStackScreen({ navigation }) {
     );
 }
 
+export function AppInitializer() {
+    const { fetchPlants } = React.useContext(PlantContext);
+    const [isInitializing, setIsInitializing] = React.useState(true);
+
+    React.useEffect(() => {
+        fetchPlants().then(() => setIsInitializing(false))
+    }, [])
+
+    return (
+        isInitializing ? 
+        <ActivityIndicator/> 
+        : 
+        <NavigationContainer>
+            <HomeTabs />
+        </NavigationContainer>
+
+    )
+}
+
 export default function App() {
     const [user, setUser] = React.useState(null);
     const [token, setToken] = React.useState(null);
@@ -166,14 +187,14 @@ export default function App() {
         token ?
             <PlantProvider token={token.jwtToken}>
                 <TaskProvider token={token.jwtToken}>
-                    <NavigationContainer>
-                        <HomeTabs />
-                    </NavigationContainer>
+                    <AppInitializer />
                 </TaskProvider>
             </PlantProvider>
         : <LoginScreen login={login}/>
   )
 }
+
+
 
 const styles = StyleSheet.create({
     container: {

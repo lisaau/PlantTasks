@@ -122,7 +122,7 @@ export const PlantProvider = ({ children, token }) => {
     }, []);
 
     return (
-        <PlantContext.Provider value={{ plants, addNewPlant, deletePlant, editPlant, loading }}>
+        <PlantContext.Provider value={{ plants, addNewPlant, deletePlant, editPlant, loading, fetchPlants }}>
             {children}
         </PlantContext.Provider>
     );
