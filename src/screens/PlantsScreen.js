@@ -1,13 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Text, View, TouchableOpacity, StyleSheet, TouchableHighlight, ActivityIndicator } from 'react-native';
-import PlantContext from '../context/PlantContext';
 import { Feather, MaterialIcons, MaterialCommunityIcons} from '@expo/vector-icons';
 import { SwipeListView } from 'react-native-swipe-list-view';
 
+import PlantContext from '../context/PlantContext';
+
 const plantIcons = ['tree', 'flower-tulip-outline', 'flower', 'flower-outline', 'flower-poppy', 'leaf'];
 
-export default function PlantsScreen({ navigation }) { 
-    const { plants, deletePlant, loading } = useContext(PlantContext);
+export function PlantDataSwipeList({ navigation }) {
+    const { plants, deletePlant } = React.useContext(PlantContext);
 
     const renderItem = data => (
         <TouchableHighlight
@@ -21,7 +22,7 @@ export default function PlantsScreen({ navigation }) {
             </View>
         </TouchableHighlight>
     );
-
+    
     const renderHiddenItem = (data) => (
         <View style={styles.rowBack}>
             <TouchableOpacity
@@ -44,8 +45,9 @@ export default function PlantsScreen({ navigation }) {
             </TouchableOpacity>
         </View>
     );
-
-    const dataToDisplay = plants === null || plants.length === 0?
+    
+    return (
+        plants === null || plants.length === 0 ?
         <View style={styles.textContainer}>
             <Text style={styles.text}>Click '+' to a plant!</Text>
         </View>
@@ -63,11 +65,16 @@ export default function PlantsScreen({ navigation }) {
                 previewOpenDelay={5000}
             />
         </View>
+    )
+}
+
+export default function PlantsScreen({ navigation }) { 
+    const { loading } = React.useContext(PlantContext);
 
     return (
-        loading === true ? 
+        loading ? 
         <ActivityIndicator style={styles.indicator} size='large' /> :
-        dataToDisplay
+        <PlantDataSwipeList navigation={navigation} />
     );
 }
 
