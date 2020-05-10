@@ -5,7 +5,7 @@ const TaskContext = React.createContext();
 export const TaskProvider = ({ children, token }) => {
     const [taskInstances, setTaskInstances] = useState([]);
     const [tasks, setTasks] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
 
     const fetchTaskInstances = async () => {
         try {
@@ -19,7 +19,7 @@ export const TaskProvider = ({ children, token }) => {
             );
             const json = await apiTaskInstances.json();
             setTaskInstances(json);
-            setLoading(false);
+            setIsLoading(false);
         } catch (e) {
             if (e) {
                 console.log(e.message, 'Something went wrong');
@@ -148,7 +148,7 @@ export const TaskProvider = ({ children, token }) => {
                 tasks,
                 addNewTask,
                 deleteTask,
-                loading
+                isLoading
             }}
         >
             {children}

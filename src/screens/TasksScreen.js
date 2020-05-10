@@ -12,7 +12,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import TaskContext from '../context/TaskContext';
 
 export default function TasksScreen() {
-    const { taskInstances, updateTaskInstanceStatus, loading } = useContext(TaskContext);
+    const { taskInstances, updateTaskInstanceStatus, isLoading } = useContext(TaskContext);
 
     const taskInstanceFlatList = (
         <View>
@@ -69,12 +69,12 @@ export default function TasksScreen() {
 
     // alert when user completes all tasks
     React.useEffect(() => {
-        if (taskInstances.length !== 0 && taskInstances.filter(ti => ti.completed === true).length === taskInstances.length && loading === false) {
+        if (taskInstances.length !== 0 && taskInstances.filter(ti => ti.completed === true).length === taskInstances.length && isLoading === false) {
             Alert.alert('All tasks completed! 🎉');
         }
     },[taskInstances])
 
-    return loading === true ? (
+    return isLoading ? (
         <ActivityIndicator style={styles.indicator} size="large" />
     ) : (
         <View style={styles.view}>{taskInstanceDisplay}</View>

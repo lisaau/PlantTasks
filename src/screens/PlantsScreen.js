@@ -69,10 +69,10 @@ function PlantDataSwipeList({ navigation }) {
 }
 
 export default function PlantsScreen({ navigation }) { 
-    const { loading } = React.useContext(PlantContext);
+    const { isLoading } = React.useContext(PlantContext);
 
     return (
-        loading ? 
+        isLoading ? 
         <ActivityIndicator style={styles.indicator} size='large' /> :
         <PlantDataSwipeList navigation={navigation} />
     );
