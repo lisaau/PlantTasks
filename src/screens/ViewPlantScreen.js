@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Text, View, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
 import PlantContext from '../context/PlantContext';
 import { EvilIcons } from '@expo/vector-icons';
 
 export default function ViewPlantScreen({ navigation, route }) {
-    const { plants } = useContext(PlantContext);
+    const { plants } = React.useContext(PlantContext);
     const plant = plants.find(p => p.id === route.params.id);
     console.log('ViewPlantScreen', route.params.id, plant);
 

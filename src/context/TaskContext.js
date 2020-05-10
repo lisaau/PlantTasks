@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 const TaskContext = React.createContext();
 
 export const TaskProvider = ({ children, token }) => {
-    const [taskInstances, setTaskInstances] = useState([]);
-    const [tasks, setTasks] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const [taskInstances, setTaskInstances] = React.useState([]);
+    const [tasks, setTasks] = React.useState([]);
+    const [isLoading, setIsLoading] = React.useState(true);
 
     const fetchTaskInstances = async () => {
         try {

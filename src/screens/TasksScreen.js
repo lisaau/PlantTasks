@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
     Text,
     View,
@@ -12,7 +12,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import TaskContext from '../context/TaskContext';
 
 export default function TasksScreen() {
-    const { taskInstances, updateTaskInstanceStatus, isLoading } = useContext(TaskContext);
+    const { taskInstances, updateTaskInstanceStatus, isLoading } = React.useContext(TaskContext);
 
     const taskInstanceFlatList = (
         <View>

@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Text, View } from 'react-native';
 import PlantForm from '../components/PlantForm';
 import DismissKeyboard from '../components/DismissKeyboard';
 import PlantContext from '../context/PlantContext';
 
 export default function EditPlantScreen({ navigation,route }) {
-    const { plants, editPlant } = useContext(PlantContext);
+    const { plants, editPlant } = React.useContext(PlantContext);
     const plant = plants.find(p => p.id === route.params.id);
     const id = route.params.id;
 

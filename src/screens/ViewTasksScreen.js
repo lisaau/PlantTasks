@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Text, View, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
 import TaskContext from '../context/TaskContext';
 import { Feather } from '@expo/vector-icons';
 
 export default function ViewTasksScreen({ navigation, route }) {
-    const { tasks, deleteTask } = useContext(TaskContext);
+    const { tasks, deleteTask } = React.useContext(TaskContext);
     const {id, name} = route.params;
     const plantTasks = tasks.filter(task => task.plant_id === id)
     const displayTaskList = <FlatList 

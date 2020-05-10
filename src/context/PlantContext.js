@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 const PlantContext = React.createContext();
 
 export const PlantProvider = ({ children, token }) => {
-    const [plants, setPlants] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const [plants, setPlants] = React.useState([]);
+    const [isLoading, setIsLoading] = React.useState(true);
     const fetchPlants = async () => {
         try {
             const apiPlants = await fetch(
@@ -117,7 +117,7 @@ export const PlantProvider = ({ children, token }) => {
         }
     };
 
-    useEffect(() => {
+    React.useEffect(() => {
         fetchPlants();
     }, []);
 

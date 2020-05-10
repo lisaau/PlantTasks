@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
-import { Text, View } from 'react-native';
+import React from 'react';
+import { View } from 'react-native';
 import PlantForm from '../components/PlantForm';
 import DismissKeyboard from '../components/DismissKeyboard';
 import PlantContext from '../context/PlantContext';
 
 export default function CreatePlantScreen({ navigation }) {
-    const { addNewPlant } = useContext(PlantContext);
+    const { addNewPlant } = React.useContext(PlantContext);
 
     return (
       <DismissKeyboard>
