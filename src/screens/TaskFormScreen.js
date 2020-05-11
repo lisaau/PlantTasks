@@ -33,6 +33,8 @@ export default function TaskFormScreen({ navigation, route }) {
                     value={description}
                     onChangeText={text => setDescription(text)}
                     style={styles.input}
+                    multiline={true}
+                    maxLength={140}
                     placeholder='required'
                 />
                 <Text style={styles.text}>Frequency (in days):</Text>
@@ -67,8 +69,9 @@ const styles = StyleSheet.create({
         fontSize: 18,
         borderBottomWidth: 1,
         borderColor: 'black',
-        marginBottom: 15,
+        marginBottom: "10%",
         padding: 5,
+        width: "80%"
     },
     text: {
         margin: 5,

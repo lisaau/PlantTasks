@@ -12,7 +12,11 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import TaskContext from '../context/TaskContext';
 
 export default function TasksScreen() {
-    const { taskInstances, updateTaskInstanceStatus, isLoading } = React.useContext(TaskContext);
+    const {
+        taskInstances,
+        updateTaskInstanceStatus,
+        isLoading
+    } = React.useContext(TaskContext);
 
     const taskInstanceFlatList = (
         <View>
@@ -35,6 +39,7 @@ export default function TasksScreen() {
                             <View style={styles.row}>
                                 <Text
                                     style={{
+                                        width: "80%",
                                         textDecorationLine:
                                             item.completed === false
                                                 ? 'none'
@@ -65,14 +70,18 @@ export default function TasksScreen() {
         ) : (
             taskInstanceFlatList
         );
-    
 
     // alert when user completes all tasks
     React.useEffect(() => {
-        if (taskInstances.length !== 0 && taskInstances.filter(ti => ti.completed === true).length === taskInstances.length && isLoading === false) {
+        if (
+            taskInstances.length !== 0 &&
+            taskInstances.filter(ti => ti.completed === true).length ===
+                taskInstances.length &&
+            isLoading === false
+        ) {
             Alert.alert('All tasks completed! 🎉');
         }
-    },[taskInstances])
+    }, [taskInstances]);
 
     return isLoading ? (
         <ActivityIndicator style={styles.indicator} size="large" />
@@ -86,7 +95,9 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: '30%'
+        marginTop: '30%',
+        marginLeft: '10%',
+        marginRight: '10%'
     },
     row: {
         flexDirection: 'row',
@@ -98,7 +109,9 @@ const styles = StyleSheet.create({
     },
     icon: {
         fontSize: 15,
-        marginLeft: 20
+        marginLeft: 20,
+        marginRight: '10%',
+        width: "20%"
     },
     indicator: {
         padding: 200
