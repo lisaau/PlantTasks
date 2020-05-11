@@ -84,7 +84,7 @@ export const TaskProvider = ({ children, token }) => {
         try {
             console.log('addNewTask params', description, frequency, plantId);
             const apiTaskInstance = await fetch(
-                'https://planttasks.herokuapp.com/task',
+                'https://planttasks.herokuapp.com/task-with-taskinstance',
                 {
                     method: 'POST',
                     headers: {
@@ -101,7 +101,8 @@ export const TaskProvider = ({ children, token }) => {
             );
             const json = await apiTaskInstance.json();
             console.log('addNewTask json', json);
-            setTasks([...tasks, json]);
+            setTasks([...tasks, json.task]);
+            setTaskInstances([...taskInstances, json.instance]);
         } catch (e) {
             if (e) {
                 console.log(e.message, 'Something went wrong');
@@ -128,6 +129,7 @@ export const TaskProvider = ({ children, token }) => {
             const json = await apiTask.json();
             console.log('deleteTask json', json);
             setTasks(tasks.filter(task => task.id !== json.id));
+            fetchTaskInstances();
         } catch (e) {
             if (e) {
                 console.log(e.message, 'Something went wrong');
