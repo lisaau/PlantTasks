@@ -185,11 +185,11 @@ export default function App() {
 
     return (
         token ?
-            <PlantProvider token={token.jwtToken}>
-                <TaskProvider token={token.jwtToken}>
-                    <AppInitializer />
-                </TaskProvider>
-            </PlantProvider>
+            <TaskProvider token={token.jwtToken}>
+                <PlantProvider token={token.jwtToken}>
+                        <AppInitializer />
+                </PlantProvider>
+            </TaskProvider>
         : <LoginScreen login={login}/>
   )
 }

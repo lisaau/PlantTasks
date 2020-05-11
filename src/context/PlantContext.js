@@ -1,8 +1,10 @@
 import React from 'react';
+import TaskContext from '../context/TaskContext';
 
 const PlantContext = React.createContext();
 
 export const PlantProvider = ({ children, token }) => {
+    const { fetchTaskInstances } = React.useContext(TaskContext);
     const [plants, setPlants] = React.useState([]);
     const [isLoading, setIsLoading] = React.useState(true);
     const fetchPlants = async () => {
@@ -110,6 +112,7 @@ export const PlantProvider = ({ children, token }) => {
             const json = await apiPlant.json();
             console.log('deletePlant json', json);
             setPlants(plants.filter(plant => plant.id !== json.id));
+            fetchTaskInstances()
         } catch (e) {
             if (e) {
                 console.log(e.message, 'Something went wrong');

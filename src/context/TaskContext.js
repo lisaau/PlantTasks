@@ -150,7 +150,8 @@ export const TaskProvider = ({ children, token }) => {
                 tasks,
                 addNewTask,
                 deleteTask,
-                isLoading
+                isLoading,
+                fetchTaskInstances
             }}
         >
             {children}
