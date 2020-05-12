@@ -61,6 +61,28 @@ export const TaskProvider = ({ children, token }) => {
         }
     };
 
+    const generateFutureTaskInstances = async () => {
+        try {
+            const apiTaskInstances = await fetch(
+                'https://planttasks.herokuapp.com/taskinstances/generate',
+                {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
+            const json = await apiTaskInstances.json();
+            console.log('Task instances successfully created and added to DB', json)
+        } catch (e) {
+            if (e) {
+                console.log(e.message, 'Something went wrong');
+            }
+        }
+    };
+
     const fetchTasks = async () => {
         try {
             const apiTaskInstances = await fetch(
@@ -140,6 +162,7 @@ export const TaskProvider = ({ children, token }) => {
     React.useEffect(() => {
         fetchTaskInstances();
         fetchTasks();
+        generateFutureTaskInstances();
     }, []);
 
     return (
