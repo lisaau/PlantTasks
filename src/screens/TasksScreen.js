@@ -20,7 +20,7 @@ export default function TasksScreen() {
 
     const taskInstanceFlatList = (
         <View>
-            <Text style={{ textAlign: 'center' }}>Tasks</Text>
+            <Text style={{ textAlign: 'center' }}>Tasks for Today:</Text>
             <FlatList
                 data={taskInstances}
                 keyExtractor={taskInstance =>
