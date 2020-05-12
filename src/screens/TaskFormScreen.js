@@ -54,8 +54,8 @@ export default function TaskFormScreen({ navigation, route }) {
                             alert('Please enter number of days');
                         } else {
                             addNewTask(description, frequency, plantId)
+                            navigation.goBack()
                         }
-                        navigation.goBack()
                     }}
                     title="Save Task"
                 />
