@@ -112,7 +112,7 @@ export const PlantProvider = ({ children, token }) => {
             const json = await apiPlant.json();
             console.log('deletePlant json', json);
             setPlants(plants.filter(plant => plant.id !== json.id));
-            fetchTaskInstances()
+            fetchTaskInstances();
         } catch (e) {
             if (e) {
                 console.log(e.message, 'Something went wrong');
@@ -125,7 +125,16 @@ export const PlantProvider = ({ children, token }) => {
     }, []);
 
     return (
-        <PlantContext.Provider value={{ plants, addNewPlant, deletePlant, editPlant, isLoading, fetchPlants }}>
+        <PlantContext.Provider
+            value={{
+                plants,
+                addNewPlant,
+                deletePlant,
+                editPlant,
+                isLoading,
+                fetchPlants
+            }}
+        >
             {children}
         </PlantContext.Provider>
     );

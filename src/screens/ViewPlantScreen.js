@@ -1,5 +1,11 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
+import {
+    StyleSheet,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View
+} from 'react-native';
 import PlantContext from '../context/PlantContext';
 import { EvilIcons } from '@expo/vector-icons';
 
@@ -18,7 +24,10 @@ export default function ViewPlantScreen({ navigation, route }) {
                         });
                     }}
                 >
-                    <EvilIcons name="pencil" style={{ fontSize: 44, paddingRight: 10 }} />
+                    <EvilIcons
+                        name="pencil"
+                        style={{ fontSize: 44, paddingRight: 10 }}
+                    />
                 </TouchableOpacity>
             )
         });
@@ -30,23 +39,23 @@ export default function ViewPlantScreen({ navigation, route }) {
         >
             <Text>Name</Text>
             <TextInput
-                    value={plant.name}
-                    style={styles.input}
-                    editable = {false}
-                    multiline={true}
+                value={plant.name}
+                style={styles.input}
+                editable={false}
+                multiline={true}
             />
             <Text>Species:</Text>
             <TextInput
                 value={plant.species}
                 style={styles.input}
-                editable = {false}
+                editable={false}
                 multiline={true}
             />
             <Text>Notes:</Text>
             <TextInput
                 value={plant.notes}
                 style={styles.input}
-                editable = {false}
+                editable={false}
                 multiline={true}
             />
         </View>
@@ -61,6 +70,6 @@ const styles = StyleSheet.create({
         marginBottom: 15,
         padding: 5,
         margin: 5,
-        width: "70%"
+        width: '70%'
     }
 });

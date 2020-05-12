@@ -1,12 +1,12 @@
 import React from 'react';
 import {
-    Text,
-    View,
-    FlatList,
-    TouchableOpacity,
-    StyleSheet,
+    Alert,
     ActivityIndicator,
-    Alert
+    FlatList,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View
 } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import TaskContext from '../context/TaskContext';
@@ -39,7 +39,7 @@ export default function TasksScreen() {
                             <View style={styles.row}>
                                 <Text
                                     style={{
-                                        width: "80%",
+                                        width: '80%',
                                         textDecorationLine:
                                             item.completed === false
                                                 ? 'none'
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
         fontSize: 15,
         marginLeft: 20,
         marginRight: '10%',
-        width: "20%"
+        width: '20%'
     },
     indicator: {
         padding: 200

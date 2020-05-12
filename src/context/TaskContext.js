@@ -75,7 +75,10 @@ export const TaskProvider = ({ children, token }) => {
                 }
             );
             const json = await apiTaskInstances.json();
-            console.log('Task instances successfully created and added to DB', json)
+            console.log(
+                'Task instances successfully created and added to DB',
+                json
+            );
         } catch (e) {
             if (e) {
                 console.log(e.message, 'Something went wrong');

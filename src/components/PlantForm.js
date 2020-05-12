@@ -1,26 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Text, View, Button, TextInput, StyleSheet } from 'react-native';
 
 export default function PlantForm({ onSave, initialValues }) {
-    const [name, setName] = useState(initialValues.name);
-    const [species, setSpecies] = useState(initialValues.species);
-    const [notes, setNotes] = useState(initialValues.notes);
+    const [name, setName] = React.useState(initialValues.name);
+    const [species, setSpecies] = React.useState(initialValues.species);
+    const [notes, setNotes] = React.useState(initialValues.notes);
 
     return (
-        <View style={{ width:"70%" }}>
+        <View style={{ width: '70%' }}>
             <Text>Enter name of plant:</Text>
             <TextInput
                 value={name}
                 onChangeText={text => setName(text)}
                 style={styles.input}
-                placeholder='required'
+                placeholder="required"
             />
             <Text>Enter name of species:</Text>
             <TextInput
                 value={species}
                 onChangeText={text => setSpecies(text)}
                 style={styles.input}
-                placeholder='required'
+                placeholder="required"
             />
             <Text>Notes:</Text>
             <TextInput
@@ -33,16 +33,16 @@ export default function PlantForm({ onSave, initialValues }) {
             <Button
                 onPress={() => {
                     if (name === '') {
-                        alert('Please enter a name')
-                    } else if(species === '') {
+                        alert('Please enter a name');
+                    } else if (species === '') {
                         alert('Please enter the species');
                     } else {
-                        onSave(name, species, notes)
+                        onSave(name, species, notes);
                     }
                 }}
                 title="Save Plant"
             />
-    </View>
+        </View>
     );
 }
 
@@ -53,6 +53,6 @@ const styles = StyleSheet.create({
         borderColor: 'black',
         marginBottom: 15,
         padding: 5,
-        margin: 5,
+        margin: 5
     }
 });
