@@ -31,7 +31,15 @@ export default function PlantForm({ onSave, initialValues }) {
                 maxLength={140}
             />
             <Button
-                onPress={() => onSave(name, species, notes)}
+                onPress={() => {
+                    if (name === '') {
+                        alert('Please enter a name')
+                    } else if(species === '') {
+                        alert('Please enter the species');
+                    } else {
+                        onSave(name, species, notes)
+                    }
+                }}
                 title="Save Plant"
             />
     </View>
