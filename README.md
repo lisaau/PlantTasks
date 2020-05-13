@@ -19,8 +19,8 @@ Tasks:
 
 - [x] Add task for a plant
 - [x] Delete task for a plant
-- [x] View tasks for a plant
-- [x] View task instances for the day
+- [x] View all tasks for a plant
+- [x] View task to do for the day
 
 Login:
 
@@ -33,6 +33,7 @@ Login:
 - React Native frontend (built on Expo)
 - Node backend with Express
 - Postgres database
+- Auth0 for authentication
 
 
 
@@ -69,14 +70,14 @@ npm install
 
    2. Create an app in Applications (or follow the instructions when prompted to if you just signed up). 
 
-   3. In the callback URL section, add the URL in this format: https://*auth*.*expo*.*io*/@your-username/PlantTasks
+   3. In the callback URL section, add the URL in this format: https://auth.expo.io/@your-username/PlantTasks
       where 'your-username' is the username of your Expo account
 
-   4. Find the 'clientId' and 'domain' in your Auth0 application under Basic in the Settings tab. Replace the clientId and domain in `App.js` (line 21 and 22) with your clientId and domain.
+   4. Find the 'clientId' and 'domain' in your Auth0 application under Basic in the Settings tab. Replace the clientId and domain in `App.js` with your clientId and domain.
 
       ```
-      const auth0ClientId = 'CP2k1WKt3V5r4J8XbVt9gzScxE3s2gTI';
-      const auth0Domain = 'https://dev-skxc8k2i.auth0.com';
+      const auth0ClientId = 'YOUR-AUTH0-CLIENT-ID';
+      const auth0Domain = 'YOUR-AUTH0-DOMAIN';
       ```
 
 4. Run `npm start` to generate a QR code in your machine to scan with your phone camera. You may select LAN or Tunnel as the connection.
@@ -106,4 +107,15 @@ The Express files for the server can be found in a separate repo, [PlantTasksSer
 [Project Planning Document](https://docs.google.com/document/d/19wEyoS1IJNBF7tuTYKs9tbo86pfvjpsz1zGN2cCEnr0/edit?usp=sharing)
 
 [Trello](https://trello.com/b/wUakeweD/planttasks-techtonica-final-project-lisa-au)
+
+
+
+## Future Features
+
+- Push notifications for reminders
+- Plant image uploading (setting up Amazon S3 to store images)
+- Using external plant API's 
+  - to provide more plant details
+  - generate recommendations for tasks based on returned results
+- Add profile tab
 
