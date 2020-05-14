@@ -3,186 +3,180 @@ import React from 'react';
 const TaskContext = React.createContext();
 
 export const TaskProvider = ({ children, token }) => {
-    const [taskInstances, setTaskInstances] = React.useState([]);
-    const [tasks, setTasks] = React.useState([]);
-    const [isLoading, setIsLoading] = React.useState(true);
+  const [taskInstances, setTaskInstances] = React.useState([]);
+  const [tasks, setTasks] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
 
-    const fetchTaskInstances = async () => {
-        try {
-            const apiTaskInstances = await fetch(
-                'https://planttasks.herokuapp.com/taskinstances/today',
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                }
-            );
-            const json = await apiTaskInstances.json();
-            setTaskInstances(json);
-            setIsLoading(false);
-        } catch (e) {
-            if (e) {
-                console.log(e.message, 'Something went wrong');
-            }
+  const fetchTaskInstances = async () => {
+    try {
+      const apiTaskInstances = await fetch(
+        'https://planttasks.herokuapp.com/taskinstances/today',
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
         }
-    };
+      );
+      const json = await apiTaskInstances.json();
+      setTaskInstances(json);
+      setIsLoading(false);
+    } catch (e) {
+      if (e) {
+        console.log(e.message, 'Something went wrong');
+      }
+    }
+  };
 
-    const updateTaskInstanceStatus = async (status, taskInstanceId) => {
-        try {
-            const apiTaskInstance = await fetch(
-                'https://planttasks.herokuapp.com/taskinstance',
-                {
-                    method: 'PUT',
-                    headers: {
-                        Accept: 'application/json',
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${token}`
-                    },
-                    body: JSON.stringify({
-                        status: status,
-                        taskInstanceId: taskInstanceId
-                    })
-                }
-            );
-            const json = await apiTaskInstance.json();
-            let modifiedTaskIndex;
-            taskInstances.filter((task, index) => {
-                if (task.task_instance_id === json.id) {
-                    modifiedTaskIndex = index;
-                }
-            });
-            taskInstances[modifiedTaskIndex].completed = json.completed;
-
-            setTaskInstances([...taskInstances]);
-        } catch (e) {
-            if (e) {
-                console.log(e.message, 'Something went wrong');
-            }
+  const updateTaskInstanceStatus = async (status, taskInstanceId) => {
+    try {
+      const apiTaskInstance = await fetch(
+        'https://planttasks.herokuapp.com/taskinstance',
+        {
+          method: 'PUT',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+          },
+          body: JSON.stringify({
+            status: status,
+            taskInstanceId: taskInstanceId
+          })
         }
-    };
-
-    const generateFutureTaskInstances = async () => {
-        try {
-            const apiTaskInstances = await fetch(
-                'https://planttasks.herokuapp.com/taskinstances/generate',
-                {
-                    method: 'POST',
-                    headers: {
-                        Accept: 'application/json',
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${token}`
-                    }
-                }
-            );
-            const json = await apiTaskInstances.json();
-            console.log(
-                'Task instances successfully created and added to DB',
-                json
-            );
-        } catch (e) {
-            if (e) {
-                console.log(e.message, 'Something went wrong');
-            }
+      );
+      const json = await apiTaskInstance.json();
+      let modifiedTaskIndex;
+      taskInstances.filter((task, index) => {
+        if (task.task_instance_id === json.id) {
+          modifiedTaskIndex = index;
         }
-    };
+      });
+      taskInstances[modifiedTaskIndex].completed = json.completed;
 
-    const fetchTasks = async () => {
-        try {
-            const apiTaskInstances = await fetch(
-                'https://planttasks.herokuapp.com/tasks',
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                }
-            );
-            const json = await apiTaskInstances.json();
-            setTasks(json);
-        } catch (e) {
-            if (e) {
-                console.log(e.message, 'Something went wrong');
-            }
+      setTaskInstances([...taskInstances]);
+    } catch (e) {
+      if (e) {
+        console.log(e.message, 'Something went wrong');
+      }
+    }
+  };
+
+  const generateFutureTaskInstances = async () => {
+    try {
+      const apiTaskInstances = await fetch(
+        'https://planttasks.herokuapp.com/taskinstances/generate',
+        {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+          }
         }
-    };
+      );
+      const json = await apiTaskInstances.json();
+      console.log('Task instances successfully created and added to DB', json);
+    } catch (e) {
+      if (e) {
+        console.log(e.message, 'Something went wrong');
+      }
+    }
+  };
 
-    const addNewTask = async (description, frequency, plantId) => {
-        try {
-            console.log('addNewTask params', description, frequency, plantId);
-            const apiTaskInstance = await fetch(
-                'https://planttasks.herokuapp.com/task-with-taskinstance',
-                {
-                    method: 'POST',
-                    headers: {
-                        Accept: 'application/json',
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${token}`
-                    },
-                    body: JSON.stringify({
-                        description: description,
-                        frequency: frequency,
-                        plantId: plantId
-                    })
-                }
-            );
-            const json = await apiTaskInstance.json();
-            console.log('addNewTask json', json);
-            setTasks([...tasks, json.task]);
-            setTaskInstances([...taskInstances, json.instance]);
-        } catch (e) {
-            if (e) {
-                console.log(e.message, 'Something went wrong');
-            }
+  const fetchTasks = async () => {
+    try {
+      const apiTaskInstances = await fetch(
+        'https://planttasks.herokuapp.com/tasks',
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
         }
-    };
+      );
+      const json = await apiTaskInstances.json();
+      setTasks(json);
+    } catch (e) {
+      if (e) {
+        console.log(e.message, 'Something went wrong');
+      }
+    }
+  };
 
-    const deleteTask = async taskId => {
-        try {
-            const apiTask = await fetch(
-                'https://planttasks.herokuapp.com/task',
-                {
-                    method: 'DELETE',
-                    headers: {
-                        Accept: 'application/json',
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${token}`
-                    },
-                    body: JSON.stringify({
-                        taskId: taskId
-                    })
-                }
-            );
-            const json = await apiTask.json();
-            console.log('deleteTask json', json);
-            setTasks(tasks.filter(task => task.id !== json.id));
-            fetchTaskInstances();
-        } catch (e) {
-            if (e) {
-                console.log(e.message, 'Something went wrong');
-            }
+  const addNewTask = async (description, frequency, plantId) => {
+    try {
+      console.log('addNewTask params', description, frequency, plantId);
+      const apiTaskInstance = await fetch(
+        'https://planttasks.herokuapp.com/task-with-taskinstance',
+        {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+          },
+          body: JSON.stringify({
+            description: description,
+            frequency: frequency,
+            plantId: plantId
+          })
         }
-    };
+      );
+      const json = await apiTaskInstance.json();
+      console.log('addNewTask json', json);
+      setTasks([...tasks, json.task]);
+      setTaskInstances([...taskInstances, json.instance]);
+    } catch (e) {
+      if (e) {
+        console.log(e.message, 'Something went wrong');
+      }
+    }
+  };
 
-    React.useEffect(() => {
-        fetchTaskInstances();
-        fetchTasks();
-        generateFutureTaskInstances();
-    }, []);
+  const deleteTask = async taskId => {
+    try {
+      const apiTask = await fetch('https://planttasks.herokuapp.com/task', {
+        method: 'DELETE',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          taskId: taskId
+        })
+      });
+      const json = await apiTask.json();
+      console.log('deleteTask json', json);
+      setTasks(tasks.filter(task => task.id !== json.id));
+      fetchTaskInstances();
+    } catch (e) {
+      if (e) {
+        console.log(e.message, 'Something went wrong');
+      }
+    }
+  };
 
-    return (
-        <TaskContext.Provider
-            value={{
-                taskInstances,
-                updateTaskInstanceStatus,
-                tasks,
-                addNewTask,
-                deleteTask,
-                isLoading,
-                fetchTaskInstances
-            }}
-        >
-            {children}
-        </TaskContext.Provider>
-    );
+  React.useEffect(() => {
+    fetchTaskInstances();
+    fetchTasks();
+    generateFutureTaskInstances();
+  }, []);
+
+  return (
+    <TaskContext.Provider
+      value={{
+        taskInstances,
+        updateTaskInstanceStatus,
+        tasks,
+        addNewTask,
+        deleteTask,
+        isLoading,
+        fetchTaskInstances
+      }}
+    >
+      {children}
+    </TaskContext.Provider>
+  );
 };
 
 export default TaskContext;

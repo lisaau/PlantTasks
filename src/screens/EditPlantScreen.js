@@ -1,37 +1,35 @@
 import React from 'react';
 import { View } from 'react-native';
-import PlantForm from '../components/PlantForm';
-import DismissKeyboard from '../components/DismissKeyboard';
+import PlantForm from './components/PlantForm';
+import DismissKeyboard from './components/DismissKeyboard';
 import PlantContext from '../context/PlantContext';
 
 export default function EditPlantScreen({ navigation, route }) {
-    const { plants, editPlant } = React.useContext(PlantContext);
-    const plant = plants.find(p => p.id === route.params.id);
-    const id = route.params.id;
+  const { plants, editPlant } = React.useContext(PlantContext);
+  const plant = plants.find(p => p.id === route.params.id);
+  const id = route.params.id;
 
-    return (
-        <DismissKeyboard>
-            <View
-                style={{
-                    flex: 1,
-                    justifyContent: 'center',
-                    alignItems: 'center'
-                }}
-            >
-                <PlantForm
-                    navigation={navigation}
-                    initialValues={{
-                        name: plant.name,
-                        species: plant.species,
-                        notes: plant.notes
-                    }}
-                    onSave={(name, species, notes) =>
-                        editPlant(id, name, species, notes).then(() =>
-                            navigation.goBack()
-                        )
-                    }
-                />
-            </View>
-        </DismissKeyboard>
-    );
+  return (
+    <DismissKeyboard>
+      <View
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}
+      >
+        <PlantForm
+          navigation={navigation}
+          initialValues={{
+            name: plant.name,
+            species: plant.species,
+            notes: plant.notes
+          }}
+          onSave={(name, species, notes) =>
+            editPlant(id, name, species, notes).then(() => navigation.goBack())
+          }
+        />
+      </View>
+    </DismissKeyboard>
+  );
 }
