@@ -18,8 +18,6 @@ export default function TaskFormScreen({ navigation, route }) {
     daysSelection.push({ label: i.toString(), value: i });
   }
 
-  console.log('TaskFormScreen', description, frequency, route.params.id);
-
   React.useLayoutEffect(() => {
     navigation.setOptions(
       {

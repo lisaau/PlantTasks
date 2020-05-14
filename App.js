@@ -49,7 +49,6 @@ export default function App() {
     // Retrieve the redirect URL, add this to the callback URL list
     // of your Auth0 application.
     const redirectUrl = AuthSession.getRedirectUrl();
-    console.log(`Redirect URL: ${redirectUrl}`);
 
     // Structure the auth parameters and URL
     const queryParams = toQueryString({
@@ -60,11 +59,9 @@ export default function App() {
       nonce: 'nonce' // ideally, this will be a random value
     });
     const authUrl = `${auth0Domain}/authorize` + queryParams;
-    console.log('authURL', authUrl);
 
     // Perform the authentication
     const response = await AuthSession.startAsync({ authUrl });
-    console.log('Authentication response', response);
 
     if (response.type === 'success') {
       handleResponse(response.params);
@@ -85,8 +82,6 @@ export default function App() {
     const decoded = jwtDecode(jwtToken);
     setToken({ jwtToken });
   };
-
-  console.log('token state:', token);
 
   return token ? (
     <TaskProvider token={token.jwtToken}>

@@ -122,7 +122,6 @@ export const TaskProvider = ({ children, token }) => {
         }
       );
       const json = await apiTaskInstance.json();
-      console.log('addNewTask json', json);
       setTasks([...tasks, json.task]);
       setTaskInstances([...taskInstances, json.instance]);
     } catch (e) {
@@ -146,7 +145,6 @@ export const TaskProvider = ({ children, token }) => {
         })
       });
       const json = await apiTask.json();
-      console.log('deleteTask json', json);
       setTasks(tasks.filter(task => task.id !== json.id));
       fetchTaskInstances();
     } catch (e) {

@@ -77,7 +77,7 @@ function PlantDataSwipeList({ navigation }) {
     </View>
   );
 
-  return plants === null || plants.length === 0 ? (
+  return plants.length === 0 ? (
     <View style={styles.textContainer}>
       <Text style={styles.text}>Click '+' to a plant!</Text>
     </View>

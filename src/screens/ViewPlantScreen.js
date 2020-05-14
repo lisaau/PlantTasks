@@ -12,7 +12,6 @@ import { EvilIcons } from '@expo/vector-icons';
 export default function ViewPlantScreen({ navigation, route }) {
   const { plants } = React.useContext(PlantContext);
   const plant = plants.find(p => p.id === route.params.id);
-  console.log('ViewPlantScreen', route.params.id, plant);
 
   React.useLayoutEffect(() => {
     navigation.setOptions({

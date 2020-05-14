@@ -26,7 +26,6 @@ export const PlantProvider = ({ children, token }) => {
 
   const addNewPlant = async (name, species, notes) => {
     try {
-      console.log('addNewPlant params', name, species, notes);
       const apiPlants = await fetch('https://planttasks.herokuapp.com/plant', {
         method: 'POST',
         headers: {
@@ -41,7 +40,6 @@ export const PlantProvider = ({ children, token }) => {
         })
       });
       const json = await apiPlants.json();
-      console.log('addNewPlant json', json);
       setPlants([...plants, json]);
     } catch (e) {
       if (e) {
@@ -98,7 +96,6 @@ export const PlantProvider = ({ children, token }) => {
         })
       });
       const json = await apiPlant.json();
-      console.log('deletePlant json', json);
       setPlants(plants.filter(plant => plant.id !== json.id));
       fetchTaskInstances();
     } catch (e) {
