@@ -6,7 +6,7 @@ export default function LoginScreen({ login }) {
         <View style={styles.container}>
             <Text style={styles.header}>PlantTasks</Text>
             <Image
-                source={require('../../assets/flower-icon.png')}
+                source={require('../../assets/cactus-icon.png')}
                 style={styles.image}
             />
             <TouchableOpacity onPress={login}>
