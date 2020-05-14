@@ -75,7 +75,12 @@ export const TaskProvider = ({ children, token }) => {
         }
       );
       const json = await apiTaskInstances.json();
-      console.log('Task instances successfully created and added to DB', json);
+      json.length === 0
+        ? console.log('No task instances need to be generated')
+        : console.log(
+            'Task instances successfully created and added to DB',
+            json
+          );
     } catch (e) {
       if (e) {
         console.log(e.message, 'Something went wrong');
@@ -104,7 +109,6 @@ export const TaskProvider = ({ children, token }) => {
 
   const addNewTask = async (description, frequency, plantId) => {
     try {
-      console.log('addNewTask params', description, frequency, plantId);
       const apiTaskInstance = await fetch(
         'https://planttasks.herokuapp.com/task-with-taskinstance',
         {
