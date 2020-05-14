@@ -9,9 +9,12 @@ import {
   View
 } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useIsFocused } from '@react-navigation/native';
+
 import TaskContext from '../context/TaskContext';
 
 export default function TasksScreen() {
+  const isFocused = useIsFocused();
   const {
     taskInstances,
     updateTaskInstanceStatus,
@@ -75,7 +78,8 @@ export default function TasksScreen() {
       taskInstances.length !== 0 &&
       taskInstances.filter(ti => ti.completed === true).length ===
         taskInstances.length &&
-      isLoading === false
+      isLoading === false &&
+      isFocused
     ) {
       Alert.alert('All tasks completed! 🎉');
     }

@@ -79,7 +79,6 @@ export default function App() {
 
     // Retrieve the JWT token and decode it
     const jwtToken = response.id_token;
-    const decoded = jwtDecode(jwtToken);
     setToken({ jwtToken });
   };
 
