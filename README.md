@@ -48,13 +48,13 @@ View the progress of the app at https://expo.io/@lisaau/PlantTasks.
 
 ##### Using an iOS device:
 
-Scanning the QR code directly to view the Expo Client App only works on Android as there are [limitations for iOS](https://blog.expo.io/upcoming-limitations-to-ios-expo-client-8076d01aee1a). If you have iOS:
+Scanning the QR code directly to view the Expo Client App only works on Android as there are [limitations for iOS](https://blog.expo.io/upcoming-limitations-to-ios-expo-client-8076d01aee1a). You will also need to create an Auth0 account so that you can set the callback URL with the URL associated with your Expo account.
 
 1. Download the [Expo Client App](https://expo.io/tools#client) for iOS
 2. Clone this repo
 
 ```
-https://github.com/lisaau/PlantTasks.git
+git clone https://github.com/lisaau/PlantTasks.git
 ```
 
 2. Switch into this directory and install dependencies.
@@ -88,9 +88,9 @@ Complete the same steps as the iOS device. You may skip step 1 (downloading the 
 
 
 
-### Notes
+### Server
 
-The Express files for the server can be found in a separate repo, [PlantTasksServer](https://github.com/lisaau/PlantTasksServer). The server is deployed on Heroku (https://planttasks.herokuapp.com/).
+The Express files for the server can be found in a separate repo, [PlantTasksServer](https://github.com/lisaau/PlantTasksServer). The server is deployed on [Heroku](https://planttasks.herokuapp.com/).
 
 
 
@@ -98,15 +98,13 @@ The Express files for the server can be found in a separate repo, [PlantTasksSer
 
 - [Video demo](https://drive.google.com/file/d/10Gz2yDjO_iVoJSl_hndyij8VtcgwerAR/view?usp=sharing) [WIP]
 
-- [Try it out on your phone!](https://expo.io/@lisaau/PlantTasks) (Follow the steps in Running the App section to get set up)
+- [Try it out on your phone!](#running-the-app)
 
   
 
 ## Project Documents/Progress
 
 [Project Planning Document](https://docs.google.com/document/d/19wEyoS1IJNBF7tuTYKs9tbo86pfvjpsz1zGN2cCEnr0/edit?usp=sharing)
-
-[Trello](https://trello.com/b/wUakeweD/planttasks-techtonica-final-project-lisa-au)
 
 
 
@@ -116,6 +114,6 @@ The Express files for the server can be found in a separate repo, [PlantTasksSer
 - Plant image uploading (setting up Amazon S3 to store images)
 - Using external plant API's 
   - to provide more plant details
-  - generate recommendations for tasks based on returned results
+  - generate task recommendations for specific plants
 - Add profile tab
 
