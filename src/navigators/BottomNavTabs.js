@@ -5,6 +5,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import ModalStackScreen from './ModalStackScreen';
 import PlantContext from '../context/PlantContext';
 import TasksScreen from '../screens/TasksScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -20,6 +21,8 @@ export default function BottomNavTabs() {
             iconName = 'format-list-bulleted';
           } else if (route.name === 'Plants') {
             iconName = focused ? 'flower-tulip' : 'flower-tulip-outline';
+          } else if (route.name === 'Profile') {
+            iconName = focused ? 'account' : 'account-outline';
           }
 
           return (
@@ -35,6 +38,7 @@ export default function BottomNavTabs() {
     >
       <Tab.Screen name="Tasks" component={TasksScreen} />
       <Tab.Screen name="Plants" component={ModalStackScreen} />
+      <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
   );
 }
