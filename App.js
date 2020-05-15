@@ -1,6 +1,5 @@
 import React from 'react';
 import * as AuthSession from 'expo-auth-session';
-import jwtDecode from 'jwt-decode';
 import { NavigationContainer } from '@react-navigation/native';
 import { StyleSheet, ActivityIndicator } from 'react-native';
 
@@ -8,6 +7,7 @@ import BottomNavTabs from './src/navigators/BottomNavTabs';
 import LoginScreen from './src/screens/LoginScreen';
 import PlantContext, { PlantProvider } from './src/context/PlantContext';
 import { TaskProvider } from './src/context/TaskContext';
+import AuthContext from './src/context/AuthContext';
 
 const auth0ClientId = 'CP2k1WKt3V5r4J8XbVt9gzScxE3s2gTI';
 const auth0Domain = 'https://dev-skxc8k2i.auth0.com';
@@ -83,11 +83,15 @@ export default function App() {
   };
 
   return token ? (
-    <TaskProvider token={token.jwtToken}>
-      <PlantProvider token={token.jwtToken}>
-        <AppInitializer />
-      </PlantProvider>
-    </TaskProvider>
+    <AuthContext.Provider
+      value={{ token: token.jwtToken, logout: () => setToken(null) }}
+    >
+      <TaskProvider token={token.jwtToken}>
+        <PlantProvider>
+          <AppInitializer />
+        </PlantProvider>
+      </TaskProvider>
+    </AuthContext.Provider>
   ) : (
     <LoginScreen login={login} />
   );

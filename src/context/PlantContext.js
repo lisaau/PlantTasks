@@ -1,10 +1,14 @@
 import React from 'react';
-import TaskContext from '../context/TaskContext';
+
+import TaskContext from './TaskContext';
+import AuthContext from './AuthContext';
 
 const PlantContext = React.createContext();
 
-export const PlantProvider = ({ children, token }) => {
+export const PlantProvider = ({ children }) => {
   const { fetchTaskInstances } = React.useContext(TaskContext);
+  const { token } = React.useContext(AuthContext);
+
   const [plants, setPlants] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const fetchPlants = async () => {

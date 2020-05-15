@@ -1,8 +1,11 @@
 import React from 'react';
 
+import AuthContext from './AuthContext';
+
 const TaskContext = React.createContext();
 
-export const TaskProvider = ({ children, token }) => {
+export const TaskProvider = ({ children }) => {
+  const { token } = React.useContext(AuthContext);
   const [taskInstances, setTaskInstances] = React.useState([]);
   const [tasks, setTasks] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
