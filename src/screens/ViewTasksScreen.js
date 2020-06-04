@@ -63,16 +63,17 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
+    flexWrap: 'wrap',
     justifyContent: 'space-between',
     paddingVertical: 20,
     paddingHorizontal: 20,
     borderTopWidth: 1,
-    borderColor: 'gray'
+    borderColor: 'gray',
   },
   icon: {
     fontSize: 24
   },
   text: {
-    width: '80%'
+    width: '80%',
   }
 });
