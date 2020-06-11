@@ -10,6 +10,8 @@ export default function TaskFormScreen({ navigation, route }) {
   const { addNewTask } = React.useContext(TaskContext);
   const [description, setDescription] = React.useState('');
   const [frequency, setFrequency] = React.useState('');
+  const [descriptionError, setDescriptionError] = React.useState(null);
+  const [frequencyError, setFrequencyError] = React.useState(null);
   const plantId = route.params.id;
 
   // frequency values for RNPickerSelect
@@ -17,17 +19,6 @@ export default function TaskFormScreen({ navigation, route }) {
   for (let i = 1; i < 31; i++) {
     daysSelection.push({ label: i.toString(), value: i });
   }
-
-  const formFieldsValidator = () => {
-    if (description === '') {
-      alert('Please enter the description of the task');
-    } else if (frequency === null || frequency === '') {
-      alert('Please enter number of days');
-    } else {
-      addNewTask(description, frequency, plantId);
-      navigation.goBack();
-    }
-  };
 
   React.useLayoutEffect(() => {
     navigation.setOptions(
@@ -47,25 +38,48 @@ export default function TaskFormScreen({ navigation, route }) {
           alignItems: 'center',
         }}
       >
-        <Text style={styles.text}>Add description:</Text>
+        <Text style={[styles.text, { color: descriptionError }]}>
+          Add task description:
+        </Text>
         <TextInput
           value={description}
-          onChangeText={(text) => setDescription(text)}
+          onChangeText={(text) => {
+            setDescriptionError(null);
+            setDescription(text);
+          }}
           style={styles.input}
           multiline={true}
           maxLength={140}
           placeholder="required"
+          onBlur={() => {
+            if (!description) setDescriptionError('red');
+          }}
         />
-        <Text style={styles.text}>Frequency (in days):</Text>
+        <Text style={[styles.text, { color: frequencyError }]}>
+          Frequency (in days):
+        </Text>
         <RNPickerSelect
           style={pickerSelectStyles}
           Icon={() => {
             return <EvilIcons name="chevron-down" style={styles.icon} />;
           }}
-          onValueChange={(value) => setFrequency(value)}
+          onValueChange={(value) => {
+            setFrequencyError(null);
+            setFrequency(value);
+          }}
           items={daysSelection}
+          onClose={() => {
+            if (!frequency) setFrequencyError('red');
+          }}
         />
-        <Button onPress={formFieldsValidator} title="Save Task" />
+        <Button
+          onPress={() => {
+            addNewTask(description, frequency, plantId);
+            navigation.goBack();
+          }}
+          title="Save Task"
+          disabled={!description || !frequency}
+        />
       </View>
     </DismissKeyboard>
   );
