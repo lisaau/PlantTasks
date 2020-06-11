@@ -5,42 +5,49 @@ export default function PlantForm({ onSave, initialValues }) {
   const [name, setName] = React.useState(initialValues.name);
   const [species, setSpecies] = React.useState(initialValues.species);
   const [notes, setNotes] = React.useState(initialValues.notes);
+  const [nameError, setNameError] = React.useState(null);
+  const [speciesError, setSpeciesError] = React.useState(null);
 
   return (
     <View style={{ width: '70%' }}>
-      <Text>Enter name of plant:</Text>
+      <Text style={{ color: nameError }}>Enter name of plant:</Text>
       <TextInput
         value={name}
-        onChangeText={text => setName(text)}
+        onChangeText={(text) => {
+          setNameError(null);
+          setName(text);
+        }}
         style={styles.input}
         placeholder="required"
+        onBlur={() => {
+          if (!name) setNameError('red');
+        }}
       />
-      <Text>Enter name of species:</Text>
+      <Text style={{ color: speciesError }}>Enter name of species:</Text>
       <TextInput
         value={species}
-        onChangeText={text => setSpecies(text)}
+        onChangeText={(text) => {
+          setSpeciesError(null);
+          setSpecies(text);
+        }}
         style={styles.input}
         placeholder="required"
+        onBlur={() => {
+          if (!species) setSpeciesError('red');
+        }}
       />
       <Text>Notes:</Text>
       <TextInput
         value={notes}
-        onChangeText={text => setNotes(text)}
+        onChangeText={(text) => setNotes(text)}
         style={styles.input}
         multiline={true}
         maxLength={140}
       />
       <Button
-        onPress={() => {
-          if (name === '') {
-            alert('Please enter a name');
-          } else if (species === '') {
-            alert('Please enter the species');
-          } else {
-            onSave(name, species, notes);
-          }
-        }}
+        onPress={() => onSave(name, species, notes)}
         title="Save Plant"
+        disabled={!name || !species}
       />
     </View>
   );
@@ -53,6 +60,6 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     marginBottom: 15,
     padding: 5,
-    margin: 5
-  }
+    margin: 5,
+  },
 });
