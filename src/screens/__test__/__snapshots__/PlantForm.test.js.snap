@@ -1,0 +1,407 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PlantForm /> renders correctly (add form) 1`] = `
+<View
+  style={
+    Object {
+      "width": "70%",
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": null,
+      }
+    }
+  >
+    Enter name of plant:
+  </Text>
+  <TextInput
+    allowFontScaling={true}
+    onBlur={[Function]}
+    onChangeText={[Function]}
+    placeholder="required"
+    rejectResponderTermination={true}
+    style={
+      Object {
+        "borderBottomWidth": 1,
+        "borderColor": "black",
+        "fontSize": 18,
+        "margin": 5,
+        "marginBottom": 15,
+        "padding": 5,
+      }
+    }
+    underlineColorAndroid="transparent"
+  />
+  <Text
+    style={
+      Object {
+        "color": null,
+      }
+    }
+  >
+    Enter name of species:
+  </Text>
+  <TextInput
+    allowFontScaling={true}
+    onBlur={[Function]}
+    onChangeText={[Function]}
+    placeholder="required"
+    rejectResponderTermination={true}
+    style={
+      Object {
+        "borderBottomWidth": 1,
+        "borderColor": "black",
+        "fontSize": 18,
+        "margin": 5,
+        "marginBottom": 15,
+        "padding": 5,
+      }
+    }
+    underlineColorAndroid="transparent"
+  />
+  <Text>
+    Notes:
+  </Text>
+  <TextInput
+    allowFontScaling={true}
+    maxLength={140}
+    multiline={true}
+    onChangeText={[Function]}
+    rejectResponderTermination={true}
+    style={
+      Object {
+        "borderBottomWidth": 1,
+        "borderColor": "black",
+        "fontSize": 18,
+        "margin": 5,
+        "marginBottom": 15,
+        "padding": 5,
+      }
+    }
+    underlineColorAndroid="transparent"
+  />
+  <View
+    accessibilityRole="button"
+    accessibilityStates={
+      Array [
+        "disabled",
+      ]
+    }
+    accessible={true}
+    focusable={true}
+    isTVSelectable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {},
+          Object {},
+        ]
+      }
+    >
+      <Text
+        disabled={true}
+        style={
+          Array [
+            Object {
+              "color": "#007AFF",
+              "fontSize": 18,
+              "padding": 8,
+              "textAlign": "center",
+            },
+            Object {
+              "color": "#cdcdcd",
+            },
+          ]
+        }
+      >
+        Save Plant
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<PlantForm /> renders correctly (edit form) 1`] = `
+<View
+  style={
+    Object {
+      "width": "70%",
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": null,
+      }
+    }
+  >
+    Enter name of plant:
+  </Text>
+  <TextInput
+    allowFontScaling={true}
+    onBlur={[Function]}
+    onChangeText={[Function]}
+    placeholder="required"
+    rejectResponderTermination={true}
+    style={
+      Object {
+        "borderBottomWidth": 1,
+        "borderColor": "black",
+        "fontSize": 18,
+        "margin": 5,
+        "marginBottom": 15,
+        "padding": 5,
+      }
+    }
+    underlineColorAndroid="transparent"
+    value="test name"
+  />
+  <Text
+    style={
+      Object {
+        "color": null,
+      }
+    }
+  >
+    Enter name of species:
+  </Text>
+  <TextInput
+    allowFontScaling={true}
+    onBlur={[Function]}
+    onChangeText={[Function]}
+    placeholder="required"
+    rejectResponderTermination={true}
+    style={
+      Object {
+        "borderBottomWidth": 1,
+        "borderColor": "black",
+        "fontSize": 18,
+        "margin": 5,
+        "marginBottom": 15,
+        "padding": 5,
+      }
+    }
+    underlineColorAndroid="transparent"
+    value="test species"
+  />
+  <Text>
+    Notes:
+  </Text>
+  <TextInput
+    allowFontScaling={true}
+    maxLength={140}
+    multiline={true}
+    onChangeText={[Function]}
+    rejectResponderTermination={true}
+    style={
+      Object {
+        "borderBottomWidth": 1,
+        "borderColor": "black",
+        "fontSize": 18,
+        "margin": 5,
+        "marginBottom": 15,
+        "padding": 5,
+      }
+    }
+    underlineColorAndroid="transparent"
+    value=""
+  />
+  <View
+    accessibilityRole="button"
+    accessibilityStates={Array []}
+    accessible={true}
+    focusable={true}
+    isTVSelectable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {},
+        ]
+      }
+    >
+      <Text
+        disabled={false}
+        style={
+          Array [
+            Object {
+              "color": "#007AFF",
+              "fontSize": 18,
+              "padding": 8,
+              "textAlign": "center",
+            },
+          ]
+        }
+      >
+        Save Plant
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<PlantForm /> renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "width": "70%",
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": null,
+      }
+    }
+  >
+    Enter name of plant:
+  </Text>
+  <TextInput
+    allowFontScaling={true}
+    onBlur={[Function]}
+    onChangeText={[Function]}
+    placeholder="required"
+    rejectResponderTermination={true}
+    style={
+      Object {
+        "borderBottomWidth": 1,
+        "borderColor": "black",
+        "fontSize": 18,
+        "margin": 5,
+        "marginBottom": 15,
+        "padding": 5,
+      }
+    }
+    underlineColorAndroid="transparent"
+  />
+  <Text
+    style={
+      Object {
+        "color": null,
+      }
+    }
+  >
+    Enter name of species:
+  </Text>
+  <TextInput
+    allowFontScaling={true}
+    onBlur={[Function]}
+    onChangeText={[Function]}
+    placeholder="required"
+    rejectResponderTermination={true}
+    style={
+      Object {
+        "borderBottomWidth": 1,
+        "borderColor": "black",
+        "fontSize": 18,
+        "margin": 5,
+        "marginBottom": 15,
+        "padding": 5,
+      }
+    }
+    underlineColorAndroid="transparent"
+  />
+  <Text>
+    Notes:
+  </Text>
+  <TextInput
+    allowFontScaling={true}
+    maxLength={140}
+    multiline={true}
+    onChangeText={[Function]}
+    rejectResponderTermination={true}
+    style={
+      Object {
+        "borderBottomWidth": 1,
+        "borderColor": "black",
+        "fontSize": 18,
+        "margin": 5,
+        "marginBottom": 15,
+        "padding": 5,
+      }
+    }
+    underlineColorAndroid="transparent"
+  />
+  <View
+    accessibilityRole="button"
+    accessibilityStates={
+      Array [
+        "disabled",
+      ]
+    }
+    accessible={true}
+    focusable={true}
+    isTVSelectable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {},
+          Object {},
+        ]
+      }
+    >
+      <Text
+        disabled={true}
+        style={
+          Array [
+            Object {
+              "color": "#007AFF",
+              "fontSize": 18,
+              "padding": 8,
+              "textAlign": "center",
+            },
+            Object {
+              "color": "#cdcdcd",
+            },
+          ]
+        }
+      >
+        Save Plant
+      </Text>
+    </View>
+  </View>
+</View>
+`;
