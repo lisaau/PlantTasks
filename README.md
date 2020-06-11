@@ -1,4 +1,4 @@
-# PlantTasks
+# PlantTasks ![cactus-icon-small](assets/cactus-icon-small.png)
 
 Never forget to take care of your plants with PlantTasks, a mobile app to track your plants and their tasks. 
 
