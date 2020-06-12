@@ -14,6 +14,7 @@ Plants:
 - [x] Delete plant
 - [x] View plant
 - [x] Edit plant
+- [x] Form validation
 
 Tasks:
 
@@ -21,10 +22,12 @@ Tasks:
 - [x] Delete task for a plant
 - [x] View all tasks for a plant
 - [x] View task to do for the day
+- [x] Form validation
 
-Login:
+Login/User Information:
 
 - [x] User registration and login
+- [x] Profile tab and logout
 
 
 
@@ -88,6 +91,19 @@ Complete the same steps as the iOS device. You may skip step 1 (downloading the 
 
 
 
+### Running Tests
+
+Once you have cloned the repo and installed dependencies, you can run the tests in the terminal with the followng steps:
+
+``` bash
+git clone https://github.com/lisaau/PlantTasks.git
+cd PlantTasks
+npm install
+npm run test
+```
+
+
+
 ### Server
 
 The Express files for the server can be found in a separate repo, [PlantTasksServer](https://github.com/lisaau/PlantTasksServer). The server is deployed on [Heroku](https://planttasks.herokuapp.com/).
@@ -96,7 +112,7 @@ The Express files for the server can be found in a separate repo, [PlantTasksSer
 
 ## Demo
 
-- [Video demo](https://drive.google.com/file/d/10Gz2yDjO_iVoJSl_hndyij8VtcgwerAR/view?usp=sharing) [WIP]
+- [Video demo](https://drive.google.com/file/d/1KEWTYTlwZw3E6-kAIqvz_I5KOhVRlzdq/view?usp=sharing)
 
 - [Try it out on your phone!](#running-the-app)
 
@@ -115,5 +131,4 @@ The Express files for the server can be found in a separate repo, [PlantTasksSer
 - Using external plant API's 
   - to provide more plant details
   - generate task recommendations for specific plants
-- Add profile tab
 
