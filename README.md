@@ -112,7 +112,9 @@ The Express files for the server can be found in a separate repo, [PlantTasksSer
 
 ## Demo
 
-- [Video demo](https://drive.google.com/file/d/1KEWTYTlwZw3E6-kAIqvz_I5KOhVRlzdq/view?usp=sharing)
+- [Video demo](https://drive.google.com/file/d/1KQ4YQ2DV7L0B_eXvz-aa1hO15coe0K_z/view?usp=sharing)
+
+  - [Video transcript](https://docs.google.com/document/d/1bQ5D2n8WCMlu_mDsCMeWKZ_uwF602IOkdhcnv98P8ck/edit?usp=sharing)
 
 - [Try it out on your phone!](#running-the-app)
 
@@ -131,4 +133,9 @@ The Express files for the server can be found in a separate repo, [PlantTasksSer
 - Using external plant API's 
   - to provide more plant details
   - generate task recommendations for specific plants
+  - Auto-populate plant species in the plant form
+- Expand test coverage
+- Accessibility
+  - Update TasksScreen to work with screen readers
+  - Form validation to display error message in addition to color change
 
