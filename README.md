@@ -2,7 +2,34 @@
 
 Never forget to take care of your plants with PlantTasks, a mobile app to track your plants and their tasks. 
 
-### Core Functionality
+
+
+## Table of Contents
+
+- [Demo](#demo)
+- [About the Project](#about-the-project)
+  - [Features](#features)
+  - [Stack](#stacks)
+  - [Project Planning](#project-planning)
+- [Running the App](#running-the-app)
+  - [Running Tests](#running-tests)
+  - [Server](#server)
+- [Future Features](#future-features)
+- [Contact](#contact)
+
+
+
+## Demo
+
+[![Watch the demo video][product-screenshot]](https://youtu.be/-vrytNw_v_A)
+
+- [Video transcript](https://docs.google.com/document/d/1bQ5D2n8WCMlu_mDsCMeWKZ_uwF602IOkdhcnv98P8ck/edit?usp=sharing)
+
+- View the progress of the app at https://expo.io/@lisaau/PlantTasks. 
+
+
+
+## About the Project
 
 This mobile app is for users who own plants that have different requirements and cadence for the care they need. PlantTasks allows users to track the plants they own as well as the tasks for those plants. By displaying the tasks that the user needs to complete that day, the user can focus on what they need do and not juggle a bunch of to-do's in their head.
 
@@ -33,16 +60,20 @@ Login/User Information:
 
 ### Stack
 
-- React Native frontend (built on Expo)
-- Node backend with Express
-- Postgres database
-- Auth0 for authentication
+- [React Native](https://reactnative.dev/) frontend (built on [Expo](https://docs.expo.io/))
+- [Node](https://nodejs.org/) backend with [Express](https://expressjs.com/)
+- [Postgres](https://www.postgresql.org/) database
+- [Auth0](https://auth0.com/) for authentication
+
+
+
+### Project Planning
+
+[Project Planning Document](https://docs.google.com/document/d/19wEyoS1IJNBF7tuTYKs9tbo86pfvjpsz1zGN2cCEnr0/edit?usp=sharing)
 
 
 
 ## Running the App
-
-View the progress of the app at https://expo.io/@lisaau/PlantTasks. 
 
 ##### Using an Android device:
 
@@ -93,7 +124,7 @@ Complete the same steps as the iOS device. You may skip step 1 (downloading the 
 
 ### Running Tests
 
-Once you have cloned the repo and installed dependencies, you can run the tests in the terminal with the followng steps:
+Once you have cloned the repo and installed dependencies, you can run the tests in the terminal:
 
 ``` bash
 git clone https://github.com/lisaau/PlantTasks.git
@@ -110,22 +141,6 @@ The Express files for the server can be found in a separate repo, [PlantTasksSer
 
 
 
-## Demo
-
-- [Video demo](https://drive.google.com/file/d/1KQ4YQ2DV7L0B_eXvz-aa1hO15coe0K_z/view?usp=sharing)
-
-  - [Video transcript](https://docs.google.com/document/d/1bQ5D2n8WCMlu_mDsCMeWKZ_uwF602IOkdhcnv98P8ck/edit?usp=sharing)
-
-- [Try it out on your phone!](#running-the-app)
-
-  
-
-## Project Documents/Progress
-
-[Project Planning Document](https://docs.google.com/document/d/19wEyoS1IJNBF7tuTYKs9tbo86pfvjpsz1zGN2cCEnr0/edit?usp=sharing)
-
-
-
 ## Future Features
 
 - Push notifications for reminders
@@ -139,3 +154,12 @@ The Express files for the server can be found in a separate repo, [PlantTasksSer
   - Update TasksScreen to work with screen readers
   - Form validation to display error message in addition to color change
 
+
+
+## Contact
+
+[![LinkedIn][linkedin-shield]][linkedin-url]
+
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/lisa-au
+[product-screenshot]: assets/PlantTasksScreenshot.png
