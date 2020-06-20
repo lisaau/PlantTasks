@@ -9,7 +9,7 @@ Never forget to take care of your plants with PlantTasks, a mobile app to track 
 - [Demo](#demo)
 - [About the Project](#about-the-project)
   - [Features](#features)
-  - [Stack](#stacks)
+  - [Stack](#stack)
   - [Project Planning](#project-planning)
 - [Running the App](#running-the-app)
   - [Running Tests](#running-tests)
@@ -21,7 +21,7 @@ Never forget to take care of your plants with PlantTasks, a mobile app to track 
 
 ## Demo
 
-[![Watch the demo video][product-screenshot]](https://youtu.be/-vrytNw_v_A)
+[![Watch the demo video][product-screenshot]](https://youtu.be/NjLydH5IRI4)
 
 - [Video transcript](https://docs.google.com/document/d/1bQ5D2n8WCMlu_mDsCMeWKZ_uwF602IOkdhcnv98P8ck/edit?usp=sharing)
 
